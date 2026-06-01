@@ -1,0 +1,3870 @@
+/* custom css start here  */
+/* Align Bootstrap / accent with site red (compiled bootstrap.min.css stays blue by default) */
+:root {
+    --bs-primary: #c62828;
+    --bs-primary-rgb: 198, 40, 40;
+    --accent-color: #c62828;
+}
+
+/* Inner pages: kill stray top gap above transparent header (absolute inside header + jQuery inline height) */
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body.inner_page {
+    margin: 0;
+    padding: 0;
+}
+
+/* main.js sets inline height on .tg-header-height; on inner pages that creates a visible white placeholder above the transparent nav */
+body.inner_page > header.tg-header-height {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+/*
+  Pin nav to the viewport top. .tg-transparent uses position:absolute relative to header;
+  that can leave a 1px / subpixel white seam. Fixed + top:0 removes the gap.
+*/
+body.inner_page #header-sticky.tg-transparent {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+}
+
+/* Theme 1: force one-row primary nav — main.css sets .tgmenu__navbar-wrap ul { flex-wrap: wrap } (+ logo gap + slim right column squeeze the UL) */
+@media (min-width: 1200px) {
+    body:is(.inner_page, .td_theme_1) #header-sticky .tgmenu__wrap {
+        flex-wrap: nowrap !important;
+        align-items: center;
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    body:is(.inner_page, .td_theme_1) #header-sticky .tgmenu__wrap .tgmenu__nav.ml-180.tgmenu-1-space {
+        flex: 1 1 auto;
+        min-width: 0;
+        margin-left: 64px !important;
+        max-width: none;
+    }
+
+    body:is(.inner_page, .td_theme_1) #header-sticky .tgmenu__navbar-wrap.tgmenu__main-menu {
+        flex-wrap: nowrap !important;
+        min-width: 0 !important;
+    }
+
+    /* Match main.css selectors + lock row (some builds omit .navigation on UL) */
+    body:is(.inner_page, .td_theme_1) #header-sticky .tgmenu__navbar-wrap ul,
+    body:is(.inner_page, .td_theme_1) #header-sticky.tg-transparent .tgmenu__navbar-wrap ul,
+    body:is(.inner_page, .td_theme_1) #header-sticky.header-sticky .tgmenu__navbar-wrap ul,
+    body:is(.inner_page, .td_theme_1) #header-sticky #main-nav.navigation {
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        margin-right: auto !important;
+        margin-bottom: 0 !important;
+    }
+
+    body:is(.inner_page, .td_theme_1) #header-sticky .tgmenu__navbar-wrap ul > li {
+        flex-shrink: 0;
+    }
+
+    body:is(.inner_page, .td_theme_1) #header-sticky .tgmenu__navbar-wrap ul > li > a {
+        white-space: nowrap !important;
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+        font-size: 14px !important;
+    }
+
+    body:is(.inner_page, .td_theme_1) #header-sticky.header-sticky .tgmenu__navbar-wrap ul > li > a {
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+    }
+}
+
+/* Theme 1: Login / Dashboard — icon-only, aligned with globe */
+body:is(.inner_page, .td_theme_1) .tg-btn-header.tg-btn-header--icon-only {
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+body:is(.inner_page, .td_theme_1) .tg-btn-header.tg-btn-header--icon-only svg {
+    display: block;
+}
+body:is(.inner_page, .td_theme_1) .header-sticky .tg-btn-header.tg-btn-header--icon-only {
+    padding: 0;
+    width: 38px;
+    height: 38px;
+}
+
+/* Theme 1: language toggle — same circle outline / filled states as icon-only login (SVG uses currentColor) */
+body:is(.inner_page, .td_theme_1) #header-sticky:not(.header-sticky) .tg-menu-right-action .tg-header-lang-toggle.language-btn-icon {
+    width: 38px;
+    height: 38px;
+    opacity: 1;
+    border: 1px solid var(--tg-common-white);
+    background: transparent;
+    color: var(--tg-common-white);
+}
+
+body:is(.inner_page, .td_theme_1) #header-sticky:not(.header-sticky)
+    .tg-menu-right-action
+    .tg-header-lang-toggle.language-btn-icon:hover,
+body:is(.inner_page, .td_theme_1) #header-sticky:not(.header-sticky)
+    .tg-menu-right-action
+    .tg-header-lang-toggle.language-btn-icon[aria-expanded="true"],
+body:is(.inner_page, .td_theme_1) #header-sticky:not(.header-sticky)
+    .tg-menu-right-action
+    .tg-header-lang-toggle.language-btn-icon:focus-visible {
+    background: var(--tg-theme-primary);
+    border-color: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+}
+
+body:is(.inner_page, .td_theme_1) #header-sticky.header-sticky .tg-menu-right-action .tg-header-lang-toggle.language-btn-icon {
+    width: 38px;
+    height: 38px;
+    opacity: 1;
+    border: 1px solid var(--tg-theme-primary);
+    background: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+}
+
+body:is(.inner_page, .td_theme_1) #header-sticky.header-sticky .tg-menu-right-action .tg-header-lang-toggle.language-btn-icon:hover,
+body:is(.inner_page, .td_theme_1) #header-sticky.header-sticky
+    .tg-menu-right-action
+    .tg-header-lang-toggle.language-btn-icon[aria-expanded="true"],
+body:is(.inner_page, .td_theme_1) #header-sticky.header-sticky
+    .tg-menu-right-action
+    .tg-header-lang-toggle.language-btn-icon:focus-visible {
+    color: var(--tg-theme-primary);
+    background: transparent;
+    border-color: var(--tg-theme-primary);
+}
+
+/* Theme 4: login — icon-only (outline circle before scroll; primary when sticky) */
+body.td_theme_4 .tg-menu-4-right-action .tg-btn-header.tg-btn-header--icon-only {
+    padding: 0 !important;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    line-height: 1;
+}
+
+body.td_theme_4 .tg-menu-4-right-action .tg-btn-header.tg-btn-header--icon-only svg {
+    display: block;
+}
+
+body.td_theme_4 #header-sticky:not(.header-sticky) .tg-menu-4-right-action .tg-btn-header.tg-btn-header--icon-only {
+    color: var(--tg-common-black) !important;
+    background: var(--tg-common-white) !important;
+    border: 1px solid #dadada !important;
+}
+
+body.td_theme_4 #header-sticky:not(.header-sticky) .tg-menu-4-right-action .tg-btn-header.tg-btn-header--icon-only:hover {
+    background: var(--tg-theme-primary) !important;
+    color: var(--tg-common-white) !important;
+    border-color: var(--tg-theme-primary) !important;
+}
+
+#header-sticky.header-sticky .tg-menu-4-right-action .tg-btn-header.tg-btn-header--icon-only {
+    padding: 0 !important;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+}
+
+#header-sticky.header-sticky .tg-menu-4-right-action .tg-btn-header.tg-btn-header--icon-only:hover {
+    color: var(--tg-theme-primary) !important;
+    background: transparent !important;
+}
+
+/* Theme 4: tighter cluster + nowrap tel */
+@media (min-width: 1200px) {
+    body.td_theme_4 .tg-menu-4-right-action .tg-header-contact-number a {
+        white-space: nowrap;
+    }
+
+    body.td_theme_4 .tg-menu-4-right-action .tg-header-lang-wrap {
+        margin-left: 0.5rem !important;
+        padding-left: 0.65rem !important;
+    }
+
+    body.td_theme_4 .tg-menu-4-right-action {
+        flex-wrap: nowrap;
+        column-gap: 4px;
+    }
+}
+
+/* Theme 1: "Call Us" phone — keep digits on one line (right column narrows vs nav) */
+@media (min-width: 1200px) {
+    body:is(.inner_page, .td_theme_1) #header-sticky .tg-header-contact-number a {
+        white-space: nowrap;
+    }
+    body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-contact-info {
+        flex-shrink: 0;
+    }
+}
+
+/* Theme 1 (LTR): equal gaps between cart / language / login / off-canvas (replace stacked ml-20 + extra lang margins) */
+@media (min-width: 992px) {
+    body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action {
+        gap: 10px;
+    }
+
+    body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-cart.ml-20.pl-20,
+    body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-btn.ml-20,
+    body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-menu-bar.ml-20.pl-20 {
+        margin-left: 0 !important;
+    }
+
+    body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-cart.ml-20.pl-20 {
+        padding-left: 12px !important;
+    }
+
+    body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-menu-bar.ml-20.pl-20 {
+        padding-left: 12px !important;
+    }
+
+    body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-lang-wrap {
+        margin-left: 0 !important;
+        padding-left: 12px !important;
+    }
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action {
+    gap: 10px;
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-cart.ml-20.pl-20,
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-btn.ml-20,
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-menu-bar.ml-20.pl-20 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-cart.ml-20.pl-20 {
+    padding-left: 0 !important;
+    padding-right: 12px !important;
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-menu-bar.ml-20.pl-20 {
+    padding-left: 0 !important;
+    padding-right: 12px !important;
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) #header-sticky .tg-menu-right-action .tg-header-lang-wrap {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 12px !important;
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) #header-sticky .tg-header-lang-wrap::before {
+    left: auto !important;
+    right: 0 !important;
+}
+
+/* Theme 5 (tg-menu-3-wrap): desktop nav wraps to a second row — mirror theme 1 — main.css sets ul { flex-wrap: wrap } */
+@media (min-width: 1200px) {
+    body.td_theme_5 .tgmenu__wrap.tg-menu-3-wrap {
+        flex-wrap: nowrap;
+        align-items: center;
+        min-width: 0;
+    }
+
+    body.td_theme_5 .tg-menu-3-wrap .tgmenu__nav {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    body.td_theme_5 .tg-menu-3-wrap .tgmenu__navbar-wrap.tgmenu__main-menu ul.navigation {
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+    }
+
+    body.td_theme_5 .tg-menu-3-wrap .tgmenu__navbar-wrap.tgmenu__main-menu ul.navigation > li > a {
+        white-space: nowrap;
+    }
+}
+
+@media (min-width: 1200px) {
+    html[dir="rtl"] body.td_theme_5 .tg-menu-3-wrap .tgmenu__navbar-wrap.tgmenu__main-menu ul.navigation {
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+    }
+
+    html[dir="rtl"] body.td_theme_5 .tg-menu-3-wrap .tgmenu__navbar-wrap.tgmenu__main-menu ul.navigation > li > a {
+        white-space: nowrap !important;
+    }
+}
+
+/* Theme 5 header: slightly wider than default .container — small step (~80px vs 1320), not full-bleed */
+@media (min-width: 1400px) {
+    body.td_theme_5 #header-sticky > .tg-theme5-header-shell {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Theme 5: icon-only login aligned with language; lang uses same outline/fill pattern (currentColor on SVG) */
+body.td_theme_5 .tg-menu-right-action-3 .tg-btn-header.tg-btn-header--icon-only {
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+body.td_theme_5 .tg-menu-right-action-3 .tg-btn-header.tg-btn-header--icon-only svg {
+    display: block;
+}
+body.td_theme_5 .header-sticky .tg-menu-right-action-3 .tg-btn-header.tg-btn-header--icon-only {
+    padding: 0;
+    width: 38px;
+    height: 38px;
+}
+
+body.td_theme_5 #header-sticky:not(.header-sticky)
+    .tg-menu-right-action-3
+    .tg-header-lang-toggle.language-btn-icon {
+    width: 38px;
+    height: 38px;
+    opacity: 1;
+    border: 1px solid var(--tg-common-white);
+    background: transparent;
+    color: var(--tg-common-white);
+}
+
+body.td_theme_5 #header-sticky:not(.header-sticky)
+    .tg-menu-right-action-3
+    .tg-header-lang-toggle.language-btn-icon:hover,
+body.td_theme_5 #header-sticky:not(.header-sticky)
+    .tg-menu-right-action-3
+    .tg-header-lang-toggle.language-btn-icon[aria-expanded="true"],
+body.td_theme_5 #header-sticky:not(.header-sticky)
+    .tg-menu-right-action-3
+    .tg-header-lang-toggle.language-btn-icon:focus-visible {
+    background: var(--tg-theme-primary);
+    border-color: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+}
+
+body.td_theme_5 #header-sticky.header-sticky
+    .tg-menu-right-action-3
+    .tg-header-lang-toggle.language-btn-icon {
+    width: 38px;
+    height: 38px;
+    opacity: 1;
+    border: 1px solid var(--tg-theme-primary);
+    background: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+}
+
+body.td_theme_5 #header-sticky.header-sticky
+    .tg-menu-right-action-3
+    .tg-header-lang-toggle.language-btn-icon:hover,
+body.td_theme_5 #header-sticky.header-sticky
+    .tg-menu-right-action-3
+    .tg-header-lang-toggle.language-btn-icon[aria-expanded="true"],
+body.td_theme_5 #header-sticky.header-sticky
+    .tg-menu-right-action-3
+    .tg-header-lang-toggle.language-btn-icon:focus-visible {
+    color: var(--tg-theme-primary);
+    background: transparent;
+    border-color: var(--tg-theme-primary);
+}
+
+/* Service detail page: remove extra top strip from page flow and keep hero visual height */
+body.inner_page .tg-service-detail-page .tg-breadcrumb-spacing-3 {
+    margin-top: -32px;
+    padding-top: 174px;
+}
+
+.cp {
+    cursor: pointer;
+}
+
+.editor_table td {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+}
+
+.price_display del {
+    font-size: 16px;
+    color: gray;
+    margin-right: 8px;
+}
+
+.tg-shop-product-content .price del {
+    color: gray !important;
+    font-weight: 400 !important;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.wishlist.wishlist_icon.active {
+    background: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+}
+
+.tg-blog-sidebar-form {
+    position: relative;
+}
+
+.tg-blog-sidebar-form .product_search_btn {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+}
+
+.tg-blog-sidebar-form input {
+    background: #f2f2f2;
+    font-size: 13px;
+    color: var(--tg-grey-1);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    width: 100%;
+    height: 40px;
+    padding: 0 40px 0px 12px;
+}
+
+
+.tg-pagenation-wrap nav ul li span {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--tg-common-black);
+    background: #f1f3f5;
+    height: 44px;
+    width: 44px;
+    text-align: center;
+    line-height: 44px;
+    transition: all 0.4s ease;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+.tg-pagenation-wrap nav ul li .p-btn {
+    height: auto;
+    width: auto;
+    line-height: 1;
+    padding: 15px 30px;
+    border-radius: 8px;
+}
+
+.tg-pagenation-wrap nav ul li span.active {
+    color: var(--tg-common-white);
+    background: var(--tg-theme-primary);
+}
+
+.tg-product-details-price del {
+    font-size: 18px;
+    font-weight: 400;
+    color: #454545;
+    margin-right: 10px;
+}
+
+.tg-product-details-availability .stock-out {
+    color: rgba(255, 0, 0, 0.633);
+}
+
+.tg-product-details-thumb-nav button {
+    min-width: 130px;
+}
+
+.vivaegypttravel-tabs-wrapper>* {
+    display: inline-block;
+    width: 100%;
+    margin-left: -2px;
+}
+
+.vivaegypttravel-tabs-wrapper {
+    position: relative;
+    white-space: nowrap;
+}
+
+.vivaegypttravel-tabs-container {
+    overflow: hidden;
+}
+
+.vivaegypttravel-tabs-wrapper .tabContent {
+    background: var(--tg-grey-7);
+    text-align: center;
+    width: 100%;
+    height: 490px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.vivaegypttravel-tabs-wrapper .tabContent img {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* blog css  */
+.tg-blog-details-review-form textarea.textarea {
+    padding-top: 11px;
+}
+
+ul.vivaegypttravel-tabs-menu li a {
+    height: 100px;
+    width: 114px;
+    display: block;
+    padding: 16px;
+    background: var(--tg-grey-7);
+    text-align: center;
+    border-radius: 15px !important;
+    mix-blend-mode: luminosity;
+}
+
+ul.vivaegypttravel-tabs-menu li a img {
+    height: 100%;
+    text-align: center;
+}
+
+ul.vivaegypttravel-tabs-menu {
+    overflow-x: auto;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+ul.vivaegypttravel-tabs-menu li {
+    display: inline-block;
+}
+
+.rating-icon {
+    cursor: pointer;
+}
+
+.rating-icon i.active {
+    color: var(--tg-common-yellow) !important;
+}
+
+.tg-tour-about-cus-review-star i {
+    color: gray;
+}
+
+.tg-tour-about-cus-review-star i.active {
+    color: var(--tg-common-yellow);
+}
+
+.tg-product-rating span {
+    color: gray;
+}
+
+.tg-product-rating span.active {
+    color: var(--tg-common-yellow);
+}
+
+.tg-ratting-star {
+    gap: 3px;
+}
+
+.tg-ratting-star i {
+    color: gray;
+    font-size: 14px;
+}
+
+.tg-ratting-star i.active {
+    color: var(--tg-common-yellow);
+}
+
+.tg-checkout-form-input .input {
+    text-transform: none;
+}
+
+.payment_box {
+    border-radius: 18px;
+    background: #f9f9f9;
+}
+
+.payment_box_head {
+    border-bottom: 1px solid #dddddd;
+}
+
+.payment_box_head h5 {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 32px;
+    color: var(--heading-color);
+    padding: 34px 40px 16px 40px;
+}
+
+.payment_select_item_main {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+    padding: 40px 40px;
+}
+
+.payment_select_item_box {
+    padding: 18px 40px;
+    border: 1px solid #ececec;
+    background-color: #fff;
+    border-radius: 12px;
+    display: inline-block;
+    width: 48%;
+    transition: all linear 0.5s;
+}
+
+.payment_select_item_thumb {
+    height: 28px;
+}
+
+.payment_select_item_thumb img {
+    width: 100%;
+    height: 100%;
+}
+
+.optech-checkuot-sidebar {
+    border: 1px solid #d4d4d4;
+    padding: 29px;
+    border-radius: 10px;
+}
+
+.optech-checkuot-sidebar ul li {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 10px;
+}
+
+.optech-checkuot-sidebar ul li:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.optech-checkuot-sidebar h5 {
+    margin-bottom: 20px;
+}
+
+.no-arrow::-webkit-inner-spin-button,
+.no-arrow::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.no-arrow {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+.tg-listing-card-review i {
+    color: #ababab;
+    font-size: 14px;
+}
+
+.tg-listing-card-review i.active {
+    color: var(--tg-common-yellow);
+}
+
+.tg-listing-item-wishlist.active {
+    color: var(--tg-theme-primary);
+}
+
+
+/* payment css  */
+.payment_right {
+    box-shadow: 0 0 15px 0 #efefef;
+    background: var(--tg-common-white);
+    border: 1px solid #e9e9e9;
+    border-radius: 12px;
+    padding: 25px 30px 30px 30px;
+}
+
+.payment_right .sub_total {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.payment_right .sub_total li {
+    color: #696969;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0px;
+    border-bottom: 1px solid #FFCDD2;
+    margin: 0 20px;
+}
+
+.payment_right .sub_total li span {
+    font-weight: 700;
+}
+
+.payment_right .sub_total li .dis {
+    color: #FF4646;
+}
+
+.payment_right .sub_total li:last-of-type {
+    font-weight: 700;
+    color: var(--heading-color);
+    border: 0;
+}
+
+.payment_right .coupon_box {
+    margin: 0 20px;
+    border: 1px solid #FFCDD2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.payment_right .coupon_box .form-control {
+    border: 0;
+    color: var(--heading-color);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.payment_right .coupon_box .form-control:focus {
+    box-shadow: inherit;
+}
+
+.payment_right .coupon_box .coupon_apply_btn {
+    padding: 15px 35px;
+    border: 0;
+    color: var(--heading-color);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    background: #EBECED;
+}
+
+.payment_right .payment_select_text h4 {
+    color: var(--heading-color);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.payment_right .payment_select_item_main {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 14px;
+    position: relative;
+    padding: 0px;
+}
+
+.payment_right .payment_select_item_box {
+    padding: 18px 40px;
+    border: 1px solid #FFCDD2;
+    border-radius: 4px;
+    display: inline-block;
+    width: 48%;
+    transition: all linear 0.5s;
+}
+
+.payment_right .payment_select_item_box:hover {
+    border-color: var(--accent-color);
+}
+
+.payment_right .payment_select_item_thumb {
+    height: 28px;
+}
+
+.payment_right .payment_select_item_thumb img {
+    width: 100%;
+    height: 100%;
+}
+
+.payment_right .payment_select_modal_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.payment_right .payment_select_modal_head h2 {
+    color: #000;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+.payment_right .payment_select_modal {
+    position: absolute;
+    padding: 12px 20px 20px 20px;
+    width: 335px;
+    z-index: 11;
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 2px 2px 50px 0px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.payment_right .payment_select_modal.active {
+    display: block;
+}
+
+.payment_right .payment_select_modal .close_modal_btn {
+    border: 0;
+    background: transparent;
+}
+
+.payment_right .payment_select_modal_form {
+    margin-top: 25px;
+}
+
+.payment_right .payment_select_modal_form .payment_select_modal_form_item {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.payment_right .payment_select_modal_form .payment_select_modal_form_inner {
+    width: 100%;
+}
+
+.payment_right .payment_select_modal_form .form-label {
+    margin-bottom: 2px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.payment_right .payment_select_modal_form .form-control {
+    padding: 15px 15px;
+    border-radius: 10px;
+    border: 1px solid #FFCDD2;
+    background: var(--white-color);
+}
+
+.payment_right .payment_select_modal_form .form-control:focus {
+    box-shadow: inherit;
+}
+
+.payment_right .payment_select_modal_form .td_btn {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.payment_right .banck_text {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.payment_right .banck_text li {
+    color: var(--heading-color);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 175%;
+}
+
+.payment_right .banck_text li span {
+    color: #7E8BA0;
+}
+
+.payment_right .banck_text li:first-of-type {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.payment_right .banck_text li:first-of-type span {
+    color: var(--heading-color);
+    font-weight: 600;
+}
+
+.service-price_display {
+    font-weight: 600;
+    margin-left: 5px;
+    font-size: 30px;
+    text-transform: capitalize;
+    color: var(--tg-theme-primary);
+}
+
+.service-price_display del {
+    font-size: 20px;
+    color: gray;
+}
+
+@media (max-width: 767px) {
+    .payment_table .table tbody tr td .payment_box_item {
+        min-width: 300px;
+    }
+
+    .payment_right {
+        margin-left: 0;
+        margin-top: 50px;
+    }
+
+    .payment_right .payment_select_item_box {
+        width: 47%;
+        padding: 15px 20px;
+    }
+
+    .payment {
+        padding: 60px 0;
+    }
+    .tg-btn-header {
+        padding: 3px 12px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .payment_table .table tbody tr td .payment_box_item {
+        min-width: 300px;
+    }
+
+    .payment_right {
+        margin-left: 0;
+    }
+
+    .payment_right .payment_select_item_box {
+        width: 46%;
+        padding: 15px 20px;
+    }
+
+    .payment_right .payment_select_modal {
+        left: 36%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .payment_table .table tbody tr td .payment_box_item {
+        min-width: 300px;
+    }
+
+    .payment_right {
+        margin-left: 0;
+    }
+
+    .payment_right .payment_select_item_box {
+        width: 47%;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+    .payment_right {
+        margin-left: 0;
+    }
+}
+
+/* Header language switcher: match circular search/cart controls */
+.tg-menu-right-action .tg-header-lang-wrap,
+.tg-menu-right-action-2 .tg-header-lang-wrap,
+.tg-menu-right-action-3 .tg-header-lang-wrap {
+    overflow: visible;
+}
+
+.tg-header-lang-wrap {
+    position: relative;
+    z-index: 20;
+    margin-left: 1.25rem;
+    padding-left: 1.25rem;
+    overflow: visible;
+}
+
+.tg-header-lang-wrap::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 20px;
+    border-left: 1.5px solid var(--tg-border-2, rgba(255, 255, 255, 0.35));
+}
+
+.tg-menu-right-action-2 .tg-header-lang-wrap::before,
+.tg-menu-4-right-action .tg-header-lang-wrap::before {
+    border-left-color: #dadada;
+}
+
+.header-sticky .tg-header-lang-wrap::before {
+    border-left-color: #dadada;
+}
+
+.tg-header-lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 100px;
+    background: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+    cursor: pointer;
+    line-height: 1;
+    vertical-align: middle;
+    transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.tg-header-lang-toggle:hover {
+    opacity: 0.92;
+}
+
+.tg-header-lang-toggle:focus-visible {
+    outline: 2px solid var(--tg-theme-primary);
+    outline-offset: 2px;
+}
+
+.tg-header-lang-toggle__icon {
+    display: block;
+    flex-shrink: 0;
+}
+
+.tg-menu-right-action-2 .tg-header-lang-toggle {
+    border: 1px solid #dadada;
+    background: var(--tg-common-white);
+    color: var(--tg-common-black);
+}
+
+.tg-menu-4-right-action .tg-header-lang-toggle {
+    border: 1px solid #dadada;
+    background: var(--tg-common-white);
+    color: var(--tg-common-black);
+}
+
+.header-sticky .tg-header-lang-toggle {
+    border: 1px solid #dadada;
+    background: var(--tg-common-white);
+    color: var(--tg-common-black);
+}
+
+.header-sticky .tg-menu-right-action-3 .tg-header-lang-toggle {
+    background: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+    border: none;
+}
+
+.header-sticky .tg-menu-4-right-action .tg-header-lang-toggle {
+    border: 1px solid #dadada;
+    background: var(--tg-common-white);
+    color: var(--tg-common-black);
+}
+
+.tg-header-lang-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: auto;
+    min-width: 168px;
+    padding: 8px 0;
+    margin: 0;
+    list-style: none;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(18, 20, 32, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    z-index: 10050;
+}
+
+.tg-header-lang-dropdown__link {
+    display: block;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: var(--tg-common-black);
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+
+.tg-header-lang-dropdown__link:hover {
+    background: #f5f5f5;
+}
+
+.tg-header-lang-dropdown__link.is-active {
+    font-weight: 600;
+    color: var(--tg-theme-primary);
+}
+
+/* Off-canvas / sidebar language: match red circular social + pill control */
+.offCanvas__lang {
+    position: relative;
+    z-index: 2;
+}
+
+.offCanvas__lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    padding: 8px 14px 8px 10px;
+    border: 1px solid var(--tg-theme-primary);
+    border-radius: 50px;
+    background: var(--tg-common-white);
+    color: var(--tg-common-black);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: left;
+    line-height: 1.2;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.offCanvas__lang-toggle:hover {
+    background: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+    border-color: var(--tg-theme-primary);
+}
+
+.offCanvas__lang-toggle:hover .offCanvas__lang-toggle-ring {
+    border-color: var(--tg-common-white);
+    color: var(--tg-common-white);
+}
+
+.offCanvas__lang-toggle[aria-expanded="true"] {
+    background: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+    border-color: var(--tg-theme-primary);
+}
+
+.offCanvas__lang-toggle[aria-expanded="true"] .offCanvas__lang-toggle-ring {
+    border-color: rgba(255, 255, 255, 0.9);
+    color: var(--tg-common-white);
+}
+
+.offCanvas__lang-toggle-ring {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border: 1px solid var(--tg-theme-primary);
+    border-radius: 50%;
+    color: var(--tg-theme-primary);
+    background: transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.offCanvas__lang-toggle-svg {
+    display: block;
+}
+
+.offCanvas__lang-toggle-label {
+    flex: 1;
+    min-width: 0;
+}
+
+.offCanvas__lang-chevron {
+    margin-inline-start: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+.offCanvas__lang-toggle[aria-expanded="true"] .offCanvas__lang-chevron {
+    transform: rotate(180deg);
+}
+
+.offCanvas__lang-dropdown {
+    position: static;
+    margin-top: 10px;
+    padding: 0;
+    border: 1px solid rgba(198, 40, 40, 0.22);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--tg-common-white);
+    box-shadow: 0 6px 20px rgba(18, 20, 32, 0.08);
+    z-index: 1;
+}
+
+.offCanvas__lang-dropdown__link {
+    display: block;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--tg-common-black);
+    text-decoration: none;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.offCanvas__lang-dropdown__link:last-child {
+    border-bottom: none;
+}
+
+.offCanvas__lang-dropdown__link:hover {
+    background: #fff5f5;
+    color: var(--tg-theme-primary);
+}
+
+.offCanvas__lang-dropdown__link.is-active {
+    background: #fff0f0;
+    color: var(--tg-theme-primary);
+    font-weight: 600;
+}
+
+/* Off-canvas + filter sidebar: currency pill (same pattern as language) */
+.offCanvas__currency,
+.tg-filter-currency {
+    position: relative;
+    z-index: 2;
+}
+
+.offCanvas__currency-toggle,
+.tg-filter-currency-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    padding: 8px 14px 8px 10px;
+    border: 1px solid var(--tg-theme-primary);
+    border-radius: 50px;
+    background: var(--tg-common-white);
+    color: var(--tg-common-black);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: start;
+    line-height: 1.2;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.offCanvas__currency-toggle:hover,
+.tg-filter-currency-toggle:hover {
+    background: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+    border-color: var(--tg-theme-primary);
+}
+
+.offCanvas__currency-toggle:hover .offCanvas__currency-toggle-ring,
+.tg-filter-currency-toggle:hover .tg-filter-currency-toggle-ring {
+    border-color: var(--tg-common-white);
+    color: var(--tg-common-white);
+}
+
+.offCanvas__currency-toggle[aria-expanded="true"],
+.tg-filter-currency-toggle[aria-expanded="true"] {
+    background: var(--tg-theme-primary);
+    color: var(--tg-common-white);
+    border-color: var(--tg-theme-primary);
+}
+
+.offCanvas__currency-toggle[aria-expanded="true"] .offCanvas__currency-toggle-ring,
+.tg-filter-currency-toggle[aria-expanded="true"] .tg-filter-currency-toggle-ring {
+    border-color: rgba(255, 255, 255, 0.9);
+    color: var(--tg-common-white);
+}
+
+.offCanvas__currency-toggle-ring,
+.tg-filter-currency-toggle-ring {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border: 1px solid var(--tg-theme-primary);
+    border-radius: 50%;
+    color: var(--tg-theme-primary);
+    background: transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.offCanvas__currency-toggle-svg,
+.tg-filter-currency-toggle-svg {
+    display: block;
+}
+
+.offCanvas__currency-toggle-label,
+.tg-filter-currency-toggle-label {
+    flex: 1;
+    min-width: 0;
+}
+
+.offCanvas__currency-chevron,
+.tg-filter-currency-chevron {
+    margin-inline-start: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+.offCanvas__currency-toggle[aria-expanded="true"] .offCanvas__currency-chevron,
+.tg-filter-currency-toggle[aria-expanded="true"] .tg-filter-currency-chevron {
+    transform: rotate(180deg);
+}
+
+.offCanvas__currency-dropdown,
+.tg-filter-currency-dropdown {
+    position: static;
+    margin-top: 10px;
+    padding: 0;
+    border: 1px solid rgba(198, 40, 40, 0.22);
+    border-radius: 12px;
+    overflow: hidden;
+    overflow-y: auto;
+    max-height: min(55vh, 320px);
+    background: var(--tg-common-white);
+    box-shadow: 0 6px 20px rgba(18, 20, 32, 0.08);
+    z-index: 1;
+}
+
+.offCanvas__currency-dropdown__link,
+.tg-filter-currency-dropdown__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--tg-common-black);
+    text-decoration: none;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.offCanvas__currency-dropdown__link:last-child,
+.tg-filter-currency-dropdown__link:last-child {
+    border-bottom: none;
+}
+
+.offCanvas__currency-dropdown__link:hover,
+.tg-filter-currency-dropdown__link:hover {
+    background: #fff5f5;
+    color: var(--tg-theme-primary);
+}
+
+.offCanvas__currency-dropdown__link.is-active,
+.tg-filter-currency-dropdown__link.is-active {
+    background: #fff0f0;
+    color: var(--tg-theme-primary);
+    font-weight: 600;
+}
+
+/* Tour booking services grid filter: breathing room above Service Type + currency <select> */
+.tg-filter-sidebar .tg-filter-section-service-type {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+}
+
+/* Service detail: inline availability calendar under Tour Plan */
+.tour-availability-calendar-root {
+    position: relative;
+    min-height: 300px;
+}
+
+.tour-availability-calendar-input-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tg-tour-availability-calendar-section .flatpickr-calendar.inline {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+.tg-tour-cal-legend-item {
+    font-size: 13px;
+    color: var(--tg-grey-1, #6b7280);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tg-tour-cal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.tg-tour-cal-dot--available {
+    background: #c8e6c9;
+    border: 1px solid #81c784;
+}
+
+.tg-tour-cal-dot--limited {
+    background: #ffe0b2;
+    border: 1px solid #ff9800;
+}
+
+.tg-tour-cal-dot--unavailable {
+    background: #ffcdd2;
+    border: 1px solid #e57373;
+}
+
+.flatpickr-day .tg-cal-cell-price {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 2px;
+    color: var(--tg-theme-primary, #c62828);
+    pointer-events: none;
+}
+
+.flatpickr-day.tg-cal-available:not(.selected) {
+    background: #e8f5e9;
+}
+
+.flatpickr-day.tg-cal-limited:not(.selected) {
+    background: #fff3e0;
+}
+
+.flatpickr-day.tg-cal-unavailable {
+    background: #ffebee;
+    color: #b71c1c;
+}
+
+/* Tour detail Book Now: decorative spans cover the date input and block clicks → Flatpickr never opens */
+.tg-tour-about-date .calender,
+.tg-tour-about-date .angle {
+    pointer-events: none;
+}
+
+.tg-tour-about-date input {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#book-now-sidebar .tg-tour-about-date {
+    position: relative;
+    z-index: 2;
+}
+
+/* Book Now: calendar must sit above sticky sidebar, header, offcanvas */
+body.inner_page .flatpickr-calendar {
+    z-index: 100000 !important;
+}
+
+.offCanvas__currency-dropdown__icon,
+.tg-filter-currency-dropdown__icon {
+    flex-shrink: 0;
+    min-width: 1.25em;
+    text-align: center;
+}
+
+.offCanvas__currency-dropdown__text,
+.tg-filter-currency-dropdown__text {
+    flex: 1;
+    min-width: 0;
+    text-align: start;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.offCanvas__currency-dropdown__rate,
+.tg-filter-currency-dropdown__rate {
+    flex-shrink: 0;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    opacity: 0.8;
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+.footer-locale-switcher {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    align-items: start;
+    margin-top: 20px;
+}
+
+.footer-locale-switcher__item,
+.footer-locale-switcher__currency {
+    min-width: 0;
+}
+
+.footer-locale-switcher__item .offCanvas__lang-toggle,
+.footer-locale-switcher__item .offCanvas__currency-toggle {
+    width: 100%;
+    margin-top: 0;
+}
+
+/* -------------------------------------------------------------------------
+   RTL (Arabic): off-canvas language/currency pills + services listing filter
+   ------------------------------------------------------------------------- */
+/* Off-canvas panel: theme defaults slide from the right (LTR). Mirror to the left for RTL. */
+html[dir="rtl"] .offCanvas__info {
+    right: auto;
+    left: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+
+html[dir="rtl"] .offCanvas__info.active {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+}
+
+html[dir="rtl"] .offCanvas__close-icon {
+    text-align: left;
+}
+
+html[dir="rtl"] .offCanvas__social-icon a {
+    margin-right: 0;
+    margin-left: 5px;
+}
+
+html[dir="rtl"] .offCanvas__lang-toggle,
+html[dir="rtl"] .offCanvas__currency-toggle,
+html[dir="rtl"] .tg-filter-currency-toggle {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+html[dir="rtl"] .offCanvas__lang-toggle-label,
+html[dir="rtl"] .offCanvas__currency-toggle-label,
+html[dir="rtl"] .tg-filter-currency-toggle-label {
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-filter-sidebar .d-flex.justify-content-between.align-items-center {
+    flex-direction: row-reverse;
+}
+
+/* Checkbox row: rely on RTL flex start edge + gap (avoids label/checkbox pushed to opposite ends) */
+html[dir="rtl"] .tg-filter-sidebar .checkbox.d-flex {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+html[dir="rtl"] .tg-filter-sidebar .tg-checkbox {
+    margin-right: 0 !important;
+}
+
+html[dir="rtl"] .tg-filter-sidebar .tg-label {
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-filter-price-input .d-flex.align-items-center {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .tg-filter-sidebar .tg-filter-title,
+html[dir="rtl"] .tg-filter-sidebar .tg-booking-form-title {
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-listing-box-filter .row.align-items-center > .col-lg-5 {
+    order: 2;
+}
+
+html[dir="rtl"] .tg-listing-box-filter .row.align-items-center > .col-lg-7 {
+    order: 1;
+}
+
+html[dir="rtl"] .tg-listing-box-view-type {
+    justify-content: flex-start !important;
+}
+
+html[dir="rtl"] .tg-listing-item-box-wrap.ml-10 {
+    margin-left: 0 !important;
+    margin-right: 10px;
+}
+
+html[dir="rtl"] .offCanvas__side-info .contact-list h4,
+html[dir="rtl"] .offCanvas__side-info .contact-list p {
+    text-align: right;
+}
+
+/* -------------------------------------------------------------------------
+   Frontend RTL polish: spacing, footers, CTAs, about, mixed-language text
+   ------------------------------------------------------------------------- */
+
+/* Filter: search icon position + input padding */
+html[dir="rtl"] .tg-filter-search-form .buttons {
+    right: auto;
+    left: 10px;
+}
+
+html[dir="rtl"] .tg-filter-search-form .input {
+    padding: 0 12px 0 40px;
+}
+
+/* Filter: See more row — icon + text gap */
+html[dir="rtl"] .tg-filter-seemore {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+html[dir="rtl"] .tg-filter-seemore .plus {
+    margin-right: 0;
+}
+
+/* Footer contact rows (all themes using mr-15 + d-flex) */
+html[dir="rtl"] .tg-footer-info ul li a.d-flex,
+html[dir="rtl"] .tg-footer-info ul li.d-flex {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.tg-footer-info ul li {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.tg-footer-info ul li a.d-flex,
+.tg-footer-info ul li.d-flex {
+    width: 100%;
+}
+
+html[dir="rtl"] .tg-footer-info .mr-15 {
+    margin-right: 0 !important;
+    flex-shrink: 0;
+}
+
+html[dir="rtl"] .tg-footer-info {
+    margin-left: 0;
+    margin-right: -33px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+    only screen and (min-width: 576px) and (max-width: 767px),
+    (max-width: 575px) {
+    html[dir="rtl"] .tg-footer-info {
+        margin-right: 0;
+    }
+}
+
+html[dir="rtl"] .tg-footer-widget.ml-80 {
+    margin-left: 0 !important;
+    margin-right: 80px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+    only screen and (min-width: 768px) and (max-width: 991px),
+    only screen and (min-width: 576px) and (max-width: 767px),
+    (max-width: 575px) {
+    html[dir="rtl"] .tg-footer-widget.ml-80 {
+        margin-right: 0 !important;
+    }
+}
+
+html[dir="rtl"] .tg-footer-form-btn {
+    right: auto;
+    left: 0;
+    border-radius: 4px 0 0 4px;
+}
+
+html[dir="rtl"] .tg-footer-form input {
+    padding: 10px 16px 10px 50px;
+}
+
+/* CTA buttons with arrow animation (tg-btn-switch-animation) */
+html[dir="rtl"] .tg-btn-switch-animation .btn-text {
+    margin-left: 0;
+    margin-right: -13px;
+}
+
+html[dir="rtl"] .tg-btn-switch-animation .btn-icon {
+    margin-left: 0;
+    margin-right: 6px;
+}
+
+html[dir="rtl"] .tg-btn-switch-animation .btn-icon + .btn-icon {
+    margin-left: 0;
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
+}
+
+html[dir="rtl"] .tg-btn-switch-animation:hover .btn-text {
+    -webkit-transform: translateX(-23px);
+    transform: translateX(-23px);
+}
+
+html[dir="rtl"] .tg-btn-switch-animation:hover .btn-icon {
+    -webkit-transform: translateX(-10px);
+    transform: translateX(-10px);
+}
+
+html[dir="rtl"] .tg-btn-switch-animation:hover .btn-icon + .btn-icon {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+/* Arrow SVG points “forward” to the left in RTL */
+html[dir="rtl"] .tg-btn-switch-animation .btn-icon svg {
+    transform: scaleX(-1);
+}
+
+/* Themes: inner flex uses ml-5 between text and icons — use gap in RTL */
+html[dir="rtl"] .tg-btn-switch-animation .d-flex.align-items-center {
+    gap: 8px;
+}
+
+html[dir="rtl"] .tg-btn-switch-animation .btn-icon.ml-5 {
+    margin-left: 0 !important;
+}
+
+html[dir="rtl"] .tg-btn-header span {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+/* About section floats / offsets (main.css is LTR-biased) */
+html[dir="rtl"] .tg-about-thumb-2 {
+    float: left;
+    margin-right: 0;
+    margin-left: -15px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+    only screen and (min-width: 768px) and (max-width: 991px),
+    only screen and (min-width: 576px) and (max-width: 767px),
+    (max-width: 575px) {
+    html[dir="rtl"] .tg-about-thumb-2 {
+        margin-left: 0;
+    }
+}
+
+html[dir="rtl"] .tg-about-thumb-4 {
+    margin-left: 0;
+    margin-right: -15px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+    only screen and (min-width: 768px) and (max-width: 991px),
+    only screen and (min-width: 576px) and (max-width: 767px),
+    (max-width: 575px) {
+    html[dir="rtl"] .tg-about-thumb-4 {
+        margin-right: 0;
+    }
+}
+
+html[dir="rtl"] .tg-about-details-map {
+    right: auto;
+    left: -30px;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px),
+    (max-width: 575px) {
+    html[dir="rtl"] .tg-about-details-map {
+        left: 0;
+    }
+}
+
+html[dir="rtl"] .tg-about-su-shape {
+    right: auto;
+    left: 6px;
+}
+
+html[dir="rtl"] .tg-about-su-shape-2 {
+    left: auto;
+    right: 100px;
+}
+
+/* About author row: avatar on the right in RTL */
+html[dir="rtl"] .tg-about-su-author.d-flex.align-items-center {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .tg-about-su-author-avatar.mr-10 {
+    margin-right: 0 !important;
+    margin-left: 10px;
+}
+
+/* Theme 3 home about: icon + copy in one row with a real gap (RTL places icon on the end; gap prevents overlap) */
+.tg-about-su-funfact-item {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: clamp(16px, 3vw, 28px);
+}
+
+.tg-about-su-funfact-icon {
+    flex: 0 0 auto;
+}
+
+.tg-about-su-funfact-icon img {
+    display: block;
+    max-width: 70px;
+    height: auto;
+}
+
+.tg-about-su-funfact-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.tg-about-su-funfact-item .tg-about-su-funfact-icon.mb-20 {
+    margin-bottom: 0;
+}
+
+html[dir="rtl"] .tg-about-su-funfact-text {
+    max-width: 100%;
+}
+
+html[dir="rtl"] .tg-about-su-funfact-text[dir="auto"] {
+    text-align: start;
+    unicode-bidi: isolate;
+}
+
+html[dir="rtl"] .tg-about-su-funfact-wrap {
+    justify-content: flex-end;
+}
+
+@media (max-width: 575px) {
+    .tg-about-su-funfact-item {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    html[dir="rtl"] .tg-about-su-funfact-item {
+        align-items: flex-end;
+    }
+}
+
+html[dir="rtl"] .tg-about-su-content-wrap.ml-80 {
+    margin-left: 0 !important;
+    margin-right: 80px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+    only screen and (min-width: 768px) and (max-width: 991px),
+    only screen and (min-width: 576px) and (max-width: 767px),
+    (max-width: 575px) {
+    html[dir="rtl"] .tg-about-su-content-wrap.ml-80 {
+        margin-right: 0 !important;
+    }
+}
+
+html[dir="rtl"] .tg-about-su-author-wrap .mr-30 {
+    margin-right: 0 !important;
+    margin-left: 30px;
+}
+
+html[dir="rtl"] .tg-about-su-cta-wrap {
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-about-su-thumb {
+    overflow: visible;
+}
+
+/* About inner page — chose cards: same icon/text spacing pattern in RTL */
+.tg-chose-6-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.tg-chose-6-wrap .icon.mb-20 {
+    margin-bottom: 0;
+}
+
+.tg-chose-6-wrap .tg-chose-6-title.mb-15 {
+    margin-bottom: 0;
+}
+
+html[dir="rtl"] .tg-chose-6-wrap {
+    align-items: flex-end;
+}
+
+html[dir="rtl"] .tg-chose-6-wrap .tg-chose-6-title,
+html[dir="rtl"] .tg-chose-6-wrap p {
+    text-align: right;
+}
+
+/*
+ * English (or other LTR) copy inside an RTL page: avoids punctuation jumping.
+ * Add class "u-ltr" to CMS/HTML blocks that must stay LTR.
+ */
+html[dir="rtl"] .u-ltr {
+    direction: ltr;
+    unicode-bidi: embed;
+    text-align: left;
+}
+
+html[dir="rtl"] .u-ltr p,
+html[dir="rtl"] .u-ltr h1,
+html[dir="rtl"] .u-ltr h2,
+html[dir="rtl"] .u-ltr h3,
+html[dir="rtl"] .u-ltr h4,
+html[dir="rtl"] .u-ltr h5 {
+    text-align: left;
+}
+
+/* -------------------------------------------------------------------------
+   RTL: booking forms/hero, inner header, blog, tour detail toolbars
+   ------------------------------------------------------------------------- */
+
+html[dir="rtl"] .tg-booking-form-input-group.d-flex {
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+html[dir="rtl"] .tg-booking-form-parent-inner.mr-15 {
+    margin-right: 0 !important;
+}
+
+html[dir="rtl"] .tg-booking-form-location-list,
+html[dir="rtl"] .tg-booking-form-location-list.tg-list-open {
+    left: auto;
+    right: 0;
+}
+
+html[dir="rtl"] .tg-booking-form-location-list.tg-quantity,
+html[dir="rtl"] .tg-booking-form-location-list.tg-quantity.tg-list-open {
+    right: auto;
+    left: 0;
+}
+
+html[dir="rtl"] .tg-booking-form-location-list ul li {
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-booking-form-location-list ul li span {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+html[dir="rtl"] .tg-booking-add-input-field {
+    justify-content: flex-start;
+    text-align: right;
+    padding-left: 44px;
+    padding-right: 17px;
+}
+
+html[dir="rtl"] .tg-booking-title-value {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+html[dir="rtl"] .tg-booking-add-input-field span.location,
+html[dir="rtl"] .tg-booking-add-input-date span {
+    right: auto;
+    left: 14px;
+}
+
+html[dir="rtl"] .tg-booking-add-input-date .input {
+    text-align: right;
+    padding-right: 18px;
+    padding-left: 50px;
+}
+
+html[dir="rtl"] .tg-booking-add-input-date .input::placeholder {
+    text-align: right;
+}
+
+html[dir="rtl"] .nice-select {
+    float: none;
+    text-align: right !important;
+    padding-left: 45px;
+    padding-right: 20px;
+}
+
+html[dir="rtl"] .nice-select::after {
+    right: auto;
+    left: 20px;
+}
+
+html[dir="rtl"] .nice-select .list {
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-booking-form-location-list .mr-20,
+html[dir="rtl"] .tg-booking-quantity .mr-20,
+html[dir="rtl"] .tg-hero-quantity .mr-20 {
+    margin-right: 0 !important;
+    margin-left: 20px !important;
+}
+
+html[dir="rtl"] .bk-search-button,
+html[dir="rtl"] .tg-booking-form-search-btn button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+html[dir="rtl"] .bk-search-button .ml-5,
+html[dir="rtl"] .tg-booking-form-search-btn .ml-5 {
+    margin-left: 0 !important;
+}
+
+html[dir="rtl"] ul.scrool-bar.scrool-height.pr-5 {
+    padding-right: 0 !important;
+    padding-left: 5px;
+}
+
+html[dir="rtl"] .tg-listing-select-price.ml-10 {
+    margin-left: 0 !important;
+    margin-right: 10px;
+}
+
+html[dir="rtl"] .tg-listing-box-view.ml-10 {
+    margin-left: 0 !important;
+    margin-right: 10px;
+}
+
+html[dir="rtl"] .list-switch-item.ml-5 {
+    margin-left: 0 !important;
+    margin-right: 5px;
+}
+
+/* Inner layouts: main menu offset from logo */
+html[dir="rtl"] .tgmenu__nav.ml-180,
+html[dir="rtl"] .tgmenu__nav.tgmenu-1-space.ml-180 {
+    margin-left: 0 !important;
+    margin-right: 180px;
+}
+
+html[dir="rtl"] nav.tgmenu__nav.ml-90 {
+    margin-left: 0 !important;
+    margin-right: 90px;
+}
+
+html[dir="rtl"] .tg-header-contact-icon.mr-5 {
+    margin-right: 0 !important;
+    margin-left: 5px;
+}
+
+html[dir="rtl"] .tg-header-cart.ml-20.pl-20 {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-right: 20px;
+    padding-right: 20px;
+}
+
+html[dir="rtl"] .tg-header-btn.ml-20 {
+    margin-left: 0 !important;
+    margin-right: 20px;
+}
+
+html[dir="rtl"] .tg-header-menu-bar.ml-20.pl-20 {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-right: 20px;
+    padding-right: 20px;
+}
+
+html[dir="rtl"] .tg-header-menu-bar.ml-10 {
+    margin-left: 0 !important;
+    margin-right: 10px;
+}
+
+/* Theme 3 hero: avatars + text */
+html[dir="rtl"] .tg-hero-tu-avatar.mr-10,
+html[dir="rtl"] .tg-hero-tu-avatar-text.mr-10 {
+    margin-right: 0 !important;
+    margin-left: 10px;
+}
+
+/* Blog listing / detail sidebar spacing */
+html[dir="rtl"] .tg-blog-lg-spacing.mr-50 {
+    margin-right: 0 !important;
+    margin-left: 50px;
+}
+
+html[dir="rtl"] .tg-blog-sidebar-title.mr-10 {
+    margin-right: 0 !important;
+    margin-left: 10px;
+}
+
+html[dir="rtl"] .tg-blog-post-thumb.mr-15 {
+    margin-right: 0 !important;
+    margin-left: 15px;
+}
+
+html[dir="rtl"] .tg-chose-content.ml-60,
+html[dir="rtl"] .tg-cta-thumb.ml-60 {
+    margin-left: 0 !important;
+    margin-right: 60px;
+}
+
+/* Tour service detail */
+html[dir="rtl"] .tg-tour-details-video-feature-price.mr-25,
+html[dir="rtl"] .tg-tour-details-video-location .mr-25 {
+    margin-right: 0 !important;
+    margin-left: 25px;
+}
+
+html[dir="rtl"] .tg-tour-details-video-location.d-flex.flex-wrap {
+    gap: 10px;
+}
+
+html[dir="rtl"] .tg-listing-item-wishlist.ml-25 {
+    margin-left: 0 !important;
+    margin-right: 25px;
+}
+
+html[dir="rtl"] .tg-tour-about-wrap.mr-55 {
+    margin-right: 0 !important;
+    margin-left: 55px;
+}
+
+html[dir="rtl"] .tg-tour-about-list .icon.mr-10,
+html[dir="rtl"] .tg-tour-details-sidebar .icon.mr-10 {
+    margin-right: 0 !important;
+    margin-left: 10px;
+}
+
+html[dir="rtl"] .tg-tour-about-cus-name h6.mr-10 {
+    margin-right: 0 !important;
+    margin-left: 10px;
+}
+
+html[dir="rtl"] .tg-tour-about-review-form-wrap label.mr-2 {
+    margin-right: 0 !important;
+    margin-left: 0.5rem;
+}
+
+html[dir="rtl"] .tg-tour-about-review-form-wrap .form-check.mr-15,
+html[dir="rtl"] .form-check.mr-15 {
+    margin-right: 0 !important;
+    margin-left: 15px;
+}
+
+/* Footer / top bar: icon before link text */
+html[dir="rtl"] .tg-footer-top a i.mr-5,
+html[dir="rtl"] .tg-footer-widget a i.mr-5 {
+    margin-right: 0 !important;
+    margin-left: 5px;
+}
+
+html[dir="rtl"] .tg-header-dvdr.mr-10.ml-10 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+html[dir="rtl"] .tg-header-dvdr.mr-20.ml-20 {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* App store badges row */
+html[dir="rtl"] .tg-cta-apps a.mr-5 {
+    margin-right: 0 !important;
+    margin-left: 5px;
+}
+
+@media (max-width: 991px) {
+    html[dir="rtl"] .tg-blog-lg-spacing.mr-50 {
+        margin-left: 0 !important;
+    }
+
+    html[dir="rtl"] .tg-tour-about-wrap.mr-55 {
+        margin-left: 0 !important;
+    }
+
+    html[dir="rtl"] .tg-chose-content.ml-60,
+    html[dir="rtl"] .tg-cta-thumb.ml-60 {
+        margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 1199px) {
+
+    html[dir="rtl"] .tgmenu__nav.ml-180,
+    html[dir="rtl"] .tgmenu__nav.tgmenu-1-space.ml-180,
+    html[dir="rtl"] nav.tgmenu__nav.ml-90 {
+        margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 600px) {
+    html[dir="rtl"] .tg-header-menu-bar.lh-1.p-relative.ml-20.pl-20 {
+        padding-right: 0;
+    }
+}
+
+/* ============================================================
+   RTL: Header & Main Menu
+   ============================================================ */
+
+html[dir="rtl"] .tgmenu__navbar-wrap ul {
+    flex-direction: row; 
+}
+
+html[dir="rtl"] .tgmenu__navbar-wrap ul li .sub-menu {
+    left: auto;
+    right: 0;
+    transform-origin: 100% 0;
+    text-align: right;
+}
+
+html[dir="rtl"] .tgmenu__navbar-wrap ul li .sub-menu li {
+    text-align: right;
+}
+
+html[dir="rtl"] .tgmenu__navbar-wrap ul li .sub-menu li a {
+    padding: 6px 25px 6px 15px;
+}
+
+html[dir="rtl"] .tgmenu__navbar-wrap ul li .sub-menu li:hover > a {
+    transform: translateX(-8px);
+}
+
+html[dir="rtl"] .tgmenu__navbar-wrap ul li .sub-menu .sub-menu {
+    left: auto;
+    right: 100%;
+}
+
+html[dir="rtl"] .tgmenu__main-menu li.menu-item-has-children > a::after {
+    margin-left: 0;
+    margin-right: 4px;
+}
+
+html[dir="rtl"] .tgmenu__search {
+    margin-inline-end: 0;
+    margin-inline-start: 25px;
+}
+
+html[dir="rtl"] .tg-header-contact-icon {
+    margin-right: 0 !important;
+    margin-left: 10px;
+}
+
+html[dir="rtl"] .offcanvas-toggle span {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+/* ============================================================
+   RTL: Split Banner (theme2 / theme5 / theme6) border-radius flip
+   In LTR: left col = rounded-left (30px 0 0 30px), right col = rounded-right (0 30px 30px 0)
+   In RTL: columns are swapped, so radii must swap too
+   ============================================================ */
+html[dir="rtl"] .tg-banner-3-content {
+    border-radius: 0 30px 30px 0;
+    margin-right: 0;
+    margin-left: -9px;
+}
+
+html[dir="rtl"] .tg-banner-3-big-content {
+    border-radius: 30px 0 0 30px;
+}
+
+/* Mobile stacked layout: keep top/bottom radius as-is */
+@media only screen and (max-width: 991px) {
+    html[dir="rtl"] .tg-banner-3-content {
+        border-radius: 30px 30px 0 0;
+        margin-left: 0;
+    }
+    html[dir="rtl"] .tg-banner-3-big-content {
+        border-radius: 0 0 30px 30px;
+    }
+}
+
+/* ============================================================
+   RTL: tg-btn-switch-animation — flip SVG arrow direction and
+   translateX values so hover animation still works
+   ============================================================ */
+html[dir="rtl"] .tg-btn-switch-animation .btn-text {
+    margin-left: 0;
+    margin-right: -13px;
+}
+
+html[dir="rtl"] .tg-btn-switch-animation .btn-icon {
+    margin-left: 0;
+    margin-right: 6px;
+}
+
+html[dir="rtl"] .tg-btn-switch-animation .btn-icon svg {
+    transform: scaleX(-1);
+}
+
+html[dir="rtl"] .tg-btn-switch-animation .btn-icon + .btn-icon {
+    margin-right: 0;
+    transform: translateX(10px);
+}
+
+html[dir="rtl"] .tg-btn-switch-animation:hover .btn-text {
+    transform: translateX(-23px);
+}
+
+html[dir="rtl"] .tg-btn-switch-animation:hover .btn-icon + .btn-icon {
+    transform: translateX(0);
+}
+
+/* ============================================================
+   RTL: Ads section — flip asymmetric padding
+   ============================================================ */
+html[dir="rtl"] .tg-ads-su-wrapper {
+    padding: 52px 60px 27px 30px;
+    text-align: right;
+    display: block; /* Force block to avoid flex-order/alignment issues if text is center */
+}
+
+html[dir="rtl"] .tg-ads-su-wrapper .tg-ads-discount {
+    justify-content: flex-start !important;
+}
+
+html[dir="rtl"] .tg-ads-su-wrapper .tg-ads-discount h2 {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+
+html[dir="rtl"] .tg-ads-wrap-3 {
+    padding: 34px 42px 27px 30px;
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-ads-wrap-3 .tg-ads-discount-inner {
+    text-align: right;
+}
+
+/* Fix for the "Up to 40% Discount" exclamation mark and alignment */
+html[dir="rtl"] .tg-ads-discount h2,
+html[dir="rtl"] .tg-ads-su-wrapper h2 {
+    direction: ltr;
+    display: inline-block;
+    unicode-bidi: embed;
+}
+
+html[dir="rtl"] .tg-ads-btn {
+    text-align: right;
+}
+
+/* Adjust button icon for RTL */
+html[dir="rtl"] .tg-ads-btn .btn-icon {
+    margin-left: 0 !important;
+    margin-right: 5px !important;
+    transform: scaleX(-1);
+}
+
+/* ============================================================
+   RTL: OffCanvas toggle divider (header)
+   ============================================================ */
+html[dir="rtl"] .offCanvas-toggle {
+    margin-right: 0;
+    padding-right: 0;
+    margin-left: 40px;
+    padding-left: 40px;
+}
+
+html[dir="rtl"] .offCanvas-toggle::before {
+    right: auto;
+    left: 0;
+}
+
+html[dir="rtl"] .offCanvas-toggle-two {
+    padding-left: 0;
+    padding-right: 40px;
+}
+
+html[dir="rtl"] .offCanvas-toggle-two::before {
+    left: auto;
+    right: 0;
+}
+
+/* ============================================================
+   RTL: Mobile menu — slides in from left instead of right
+   ============================================================ */
+html[dir="rtl"] .tgmobile__menu {
+    right: auto;
+    left: 0;
+    transform: translateX(-101%);
+}
+
+html[dir="rtl"] .mobile-menu-visible .tgmobile__menu {
+    transform: translateX(0%);
+}
+
+html[dir="rtl"] .tgmobile__menu-outer .mobile-nav-toggler {
+    float: left;
+    margin-right: 0;
+    margin-left: 30px;
+}
+
+html[dir="rtl"] .tgmobile__menu .nav-logo {
+    text-align: right;
+}
+
+html[dir="rtl"] .tgmobile__search input {
+    padding: 10px 20px 10px 45px;
+}
+
+html[dir="rtl"] .tgmobile__search button {
+    right: auto;
+    left: 20px;
+}
+
+/* ============================================================
+   RTL: Site-wide search overlay — icon/button on opposite side
+   ============================================================ */
+html[dir="rtl"] .search__input input {
+    padding-right: 0;
+    padding-left: 30px;
+}
+
+html[dir="rtl"] .search__input button {
+    right: auto;
+    left: 0;
+}
+
+html[dir="rtl"] .search__close {
+    right: auto;
+    left: 2%;
+}
+
+/* ============================================================
+   RTL: Tour/listing cards — badge, padding, radius
+   ============================================================ */
+html[dir="rtl"] .tg-listing-item-price-discount {
+    left: auto;
+    right: 0;
+    padding: 6px 14px 6px 20px;
+    border-radius: 0 6px 6px 0;
+}
+
+html[dir="rtl"] .tg-listing-card-price-wrap {
+    padding: 5px 23px 5px 29px;
+}
+
+html[dir="rtl"] .tg-listing-card-price-wrap.price-bg {
+    border-radius: 0px 0px 12px 0px;
+}
+
+html[dir="rtl"] .tg-listing-card-content {
+    padding: 0px 25px 14px 18px;
+}
+
+html[dir="rtl"] .tg-listing-card-review.space {
+    padding: 10px 10px 10px 17px;
+}
+
+html[dir="rtl"] .tg-listing-map-list-item .tg-listing-card-content {
+    padding-left: 0;
+    padding-right: 24px;
+}
+
+/* Wishlist control is positioned on the inner <a>, not the wrapper (main.css). */
+html[dir="rtl"] .tg-listing-item-wishlist a {
+    right: auto !important;
+    left: 24px !important;
+}
+
+/* Location + duration: keep icon–text order like LTR; hug the right edge of the card (Arabic). */
+html[dir="rtl"] .tg-listing-card-duration-tour {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* inline-start = right edge when dir=rtl */
+    text-align: right;
+    width: 100%;
+}
+
+html[dir="rtl"] .tg-listing-card-duration-tour span.tg-listing-card-duration-map,
+html[dir="rtl"] .tg-listing-card-duration-tour span.tg-listing-card-duration-time {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    direction: ltr;
+    unicode-bidi: isolate;
+    width: auto;
+    max-width: 100%;
+}
+
+html[dir="rtl"] .tg-listing-card-duration-tour span.tg-listing-card-duration-map svg,
+html[dir="rtl"] .tg-listing-card-duration-tour span.tg-listing-card-duration-time svg {
+    flex-shrink: 0;
+    margin-right: 5px !important;
+    margin-left: 0 !important;
+}
+
+/* Reviews: align block to inline-start; stars stay LTR inside .tg-listing-card-review-stars */
+html[dir="rtl"] .tg-listing-card-review {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    direction: rtl;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+html[dir="rtl"] .tg-listing-card-review .tg-listing-card-review-stars {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 1px;
+}
+
+html[dir="rtl"] .tg-listing-card-review .tg-listing-rating-percent {
+    direction: rtl;
+    unicode-bidi: embed;
+}
+
+/* Theme 2 card typography + price pill toward inline-start */
+html[dir="rtl"] .tg-listing-2-card-item .tg-listing-card-title,
+html[dir="rtl"] .tg-listing-2-card-item .tg-listing-card-title a {
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-listing-2-card-item .tg-listing-2-price-wrap {
+    text-align: start;
+}
+
+html[dir="rtl"] .tg-listing-2-card-item .tg-listing-card-content {
+    padding: 0 25px 26px 18px;
+}
+
+html[dir="rtl"] .tg-listing-2-card-item .tg-listing-2-price {
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+html[dir="rtl"] .tg-listing-item-price-discount.shape-3 {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .tg-listing-item-price-discount.shape-3 svg {
+    margin-right: 0;
+    margin-left: 4px;
+}
+
+/* Theme 2 thumb: stack sale/new/featured in a column (no overlapping absolute tops + huge bg images) */
+.tg-listing-2-card-item .tg-listing-2-thumb-badges {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    right: auto;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: min(92%, 280px);
+    pointer-events: none;
+}
+
+html[dir="rtl"] .tg-listing-2-card-item .tg-listing-2-thumb-badges {
+    left: auto;
+    right: 0;
+    align-items: flex-end;
+}
+
+.tg-listing-2-card-item .tg-listing-2-thumb-badges .tg-listing-item-price-discount {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   RTL: Listing map layout — offset wrapper
+   ============================================================ */
+html[dir="rtl"] .tg-listing-map-list-wrap {
+    margin-right: 0;
+    margin-left: -35px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-listing-map-list-wrap {
+        margin-left: 0;
+    }
+}
+
+html[dir="rtl"] .tg-listing-map-filter .nice-select {
+    margin-right: 0;
+    margin-left: 8px;
+    padding-right: 10px;
+    padding-left: 37px;
+}
+
+html[dir="rtl"] .tg-listing-map-filter .nice-select:after {
+    right: auto;
+    left: 10px;
+}
+
+/* ============================================================
+   RTL: "Why Choose Us" sections
+   ============================================================ */
+html[dir="rtl"] .tg-chose-thumb {
+    margin-right: 0;
+    margin-left: -143px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-chose-thumb {
+        margin-left: 0;
+    }
+}
+
+html[dir="rtl"] .tg-chose-3-left {
+    padding-right: 0;
+    padding-left: 55px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-chose-3-left {
+        padding-left: 0;
+    }
+}
+
+html[dir="rtl"] .tg-chose-4-right {
+    padding-left: 0;
+    padding-right: 55px;
+}
+
+html[dir="rtl"] .tg-chose-su-2-main-thumb {
+    margin-right: 0;
+    margin-left: -70px;
+    padding-left: 0;
+    padding-right: 35px;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-chose-su-2-main-thumb {
+        margin-left: 0;
+    }
+}
+
+html[dir="rtl"] .tg-chose-right {
+    margin-left: 50px;
+    margin-right: 33px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-chose-right {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+html[dir="rtl"] .tg-chose-3-rounded {
+    margin-right: 63px;
+    margin-left: 0;
+}
+
+html[dir="rtl"] .tg-chose-3-shape {
+    right: auto;
+    left: 32px;
+}
+
+html[dir="rtl"] .tg-chose-3-map {
+    left: auto;
+    right: -52px;
+}
+
+html[dir="rtl"] .tg-chose-4-shape {
+    left: auto;
+    right: 0;
+}
+
+/* ============================================================
+   RTL: Mini split-banner (video + content side by side)
+   ============================================================ */
+html[dir="rtl"] .tg-banner-video-wrap {
+    border-radius: 0px 12px 12px 0px;
+}
+
+html[dir="rtl"] .tg-banner-content {
+    border-radius: 12px 0px 0px 12px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-banner-video-wrap,
+    html[dir="rtl"] .tg-banner-content {
+        border-radius: 0;
+    }
+}
+
+/* ============================================================
+   RTL: Blog sidebar — negative offset
+   ============================================================ */
+html[dir="rtl"] .tg-blog-sidebar {
+    margin-left: 0;
+    margin-right: -23px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-blog-sidebar {
+        margin-right: 0;
+    }
+}
+
+/* ============================================================
+   RTL: CTA (Call To Action) sections
+   ============================================================ */
+html[dir="rtl"] .tg-cta-thumb:not(.ml-60) {
+    margin-right: 0;
+    margin-left: -45px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-cta-thumb:not(.ml-60) {
+        margin-left: 0;
+    }
+}
+
+html[dir="rtl"] .tg-cta-content {
+    margin-left: 0;
+    margin-right: 75px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-cta-content {
+        margin-right: 29px;
+    }
+}
+
+html[dir="rtl"] .tg-cta-4-thumb {
+    margin-left: 0;
+    margin-right: 228px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    html[dir="rtl"] .tg-cta-4-thumb {
+        margin-right: 150px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-cta-4-thumb {
+        margin-right: 0;
+    }
+}
+
+html[dir="rtl"] .tg-cta-4-content {
+    margin-right: -45px;
+    margin-left: 205px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-cta-4-content {
+        margin-right: 0;
+        margin-left: 105px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-cta-4-content {
+        margin-left: 0;
+    }
+}
+
+/* ============================================================
+   RTL: Footer info column offset
+   ============================================================ */
+html[dir="rtl"] .tg-footer-info {
+    margin-left: 0;
+    margin-right: -33px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-footer-info {
+        margin-right: 0;
+    }
+}
+
+/* ============================================================
+   RTL: Full-width map padding
+   ============================================================ */
+html[dir="rtl"] .tg-map-full {
+    padding-left: 0;
+    padding-right: 35px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-map-full {
+        padding-right: 0;
+    }
+}
+
+/* ============================================================
+   RTL: Tour details sidebar
+   ============================================================ */
+html[dir="rtl"] .tg-tour-about-sidebar {
+    margin-left: 0;
+    margin-right: -30px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-tour-about-sidebar {
+        margin-right: 0;
+    }
+}
+
+html[dir="rtl"] .tg-tour-about-date input {
+    padding-left: 15px;
+    padding-right: 38px;
+}
+
+html[dir="rtl"] .tg-tour-about-date .calender,
+html[dir="rtl"] .tg-tour-about-date .angle {
+    left: auto;
+    right: 13px;
+}
+
+html[dir="rtl"] .tg-tour-about-extra ul li .adult {
+    padding-left: 0;
+    padding-right: 30px;
+}
+
+/* ============================================================
+   RTL: Shop sidebar
+   ============================================================ */
+html[dir="rtl"] .tg-shop-sidebar {
+    margin-right: 0;
+    margin-left: -23px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-shop-sidebar {
+        margin-left: 0;
+    }
+}
+
+html[dir="rtl"] .tg-product-modal-thumb-wrapper {
+    margin-right: 0;
+    margin-left: -30px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-product-modal-thumb-wrapper {
+        margin-left: 0;
+    }
+}
+
+/* ============================================================
+   RTL: Checkout — payment label spacing, amount float
+   ============================================================ */
+html[dir="rtl"] .tg-checkout-payment label {
+    margin-left: 0;
+    margin-right: 7px;
+}
+
+html[dir="rtl"] .tg-checkout-order-table table tbody .cart_item .product-total .amount,
+html[dir="rtl"] .tg-checkout-order-table table tfoot tr td {
+    float: left;
+}
+
+/* ============================================================
+   RTL: breadcrumbs + scroll top + mobile menu internals
+   ============================================================ */
+html[dir="rtl"] .tg-breadcrumb-list-2 ul li,
+html[dir="rtl"] .tg-breadcrumb-list-3 ul li,
+html[dir="rtl"] .tg-breadcrumb-list-4 ul li {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+html[dir="rtl"] .scroll__top {
+    right: auto;
+    left: 50px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    html[dir="rtl"] .scroll__top {
+        left: 25px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    html[dir="rtl"] .scroll__top {
+        left: 30px;
+    }
+}
+
+@media (max-width: 575px) {
+    html[dir="rtl"] .scroll__top {
+        left: 15px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    html[dir="rtl"] .offCanvas-toggle {
+        margin-left: 25px;
+        padding-left: 25px;
+    }
+}
+
+html[dir="rtl"] .tgmobile__menu {
+    padding-right: 0;
+    padding-left: 30px;
+}
+
+html[dir="rtl"] .tgmobile__menu .navigation li.menu-item-has-children .dropdown-btn {
+    right: auto;
+    left: 20px;
+}
+
+html[dir="rtl"] .tgmobile__menu .navigation li > a {
+    padding: 10px 25px 10px 60px;
+}
+
+html[dir="rtl"] .tgmobile__menu .navigation li > a::before {
+    left: auto;
+    right: 0;
+}
+
+html[dir="rtl"] .tgmobile__menu .navigation li ul li > a,
+html[dir="rtl"] .tgmobile__menu .navigation ul li ul li > a {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+html[dir="rtl"] .tgmobile__menu .navigation li ul li ul li a {
+    margin-left: 0;
+    margin-right: 40px;
+}
+
+html[dir="rtl"] .tgmobile__menu .navigation li ul li ul li ul li a {
+    margin-left: 0;
+    margin-right: 60px;
+}
+
+html[dir="rtl"] .tgmobile__menu .close-btn {
+    right: auto;
+    left: 15px;
+}
+
+html[dir="rtl"] .tgmobile__menu-outer .mobile-nav-toggler {
+    float: left;
+    margin-right: 0;
+    margin-left: 30px;
+}
+
+html[dir="rtl"] .tgmobile__menu-box {
+    left: auto;
+    right: 0;
+    box-shadow: 9px 0 14px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================================
+   RTL: remaining listing/booking/mobile section fixes
+   ============================================================ */
+html[dir="rtl"] .nice-select .option {
+    text-align: right;
+    padding-left: 29px;
+    padding-right: 18px;
+}
+
+html[dir="rtl"] .tg-hero-tu-avatar-text {
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-booking-tu-wrapper {
+    text-align: right;
+    padding: 13px 26px 3px 14px;
+}
+
+html[dir="rtl"] .tg-booking-tu-wrapper .tg-booking-add-input-field {
+    justify-content: right;
+    padding-left: 0;
+    padding-right: 5px;
+}
+
+html[dir="rtl"] .tg-booking-tu-wrapper .tg-booking-title-value {
+    margin-left: 20px;
+    margin-right: 16px;
+}
+
+html[dir="rtl"] .tg-booking-tu-wrapper .tg-booking-add-input-date .input {
+    padding-left: 0;
+    padding-right: 24px;
+}
+
+html[dir="rtl"] .tg-booking-tu-wrapper .tg-booking-add-input-date span {
+    left: auto;
+    right: 0;
+}
+
+html[dir="rtl"] .tg-booking-tu-wrapper .tg-booking-add-input-date span.angle-down {
+    left: 0;
+    right: auto;
+}
+
+@media (max-width: 575px) {
+    html[dir="rtl"] .tg-booking-tu-wrapper .tg-booking-add-input-date span.angle-down {
+        left: -10px;
+        right: auto;
+    }
+}
+
+html[dir="rtl"] .tg-booking-tu-wrapper .tg-booking-form-title {
+    margin-left: 0;
+    margin-right: 23px;
+}
+
+html[dir="rtl"] .tg-listing-map-filter-bottom .tg-listing-box-number-found {
+    text-align: right;
+}
+
+html[dir="rtl"] .list-card.list-card-open .tg-grid-full .tg-listing-card-review.space {
+    padding: 8px 0 10px 8px;
+}
+
+html[dir="rtl"] .list-card.list-card-open .tg-grid-full .tg-listing-card-content {
+    padding: 20px 25px 14px 18px;
+}
+
+html[dir="rtl"] .list-card.list-card-open .tg-grid-full .tg-listing-card-price {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+html[dir="rtl"] .list-card.list-card-open .tg-grid-full .tg-listing-2-price-wrap {
+    text-align: right !important;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] .tg-listing-5-slider-navigation,
+    html[dir="rtl"] .tg-location-3-btn,
+    html[dir="rtl"] .tg-tour-details-video-share,
+    html[dir="rtl"] .tg-ads-content {
+        text-align: right !important;
+    }
+}
+
+html[dir="rtl"] .tg-listing-5-card-item .tg-listing-2-price {
+    left: auto;
+    right: 21px;
+}
+
+/* ============================================================
+   RTL: Tour plan itinerary accordion (Day badge + title + chevron)
+   ============================================================ */
+html[dir="rtl"] .tg-tour-about-faq .accordion-header {
+    padding: 12px 12px 12px 80px;
+}
+
+html[dir="rtl"] .tg-tour-about-faq .accordion-button {
+    direction: rtl;
+    text-align: right;
+    justify-content: flex-start;
+    padding-right: 0;
+}
+
+html[dir="rtl"] .tg-tour-about-faq .accordion-button span {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+html[dir="rtl"] .tg-tour-about-faq .accordion-button::after {
+    right: auto;
+    left: -50px;
+}
+
+@media (max-width: 575px) {
+    html[dir="rtl"] .tg-tour-about-faq .accordion-button {
+        align-items: flex-end;
+    }
+
+    html[dir="rtl"] .tg-tour-about-faq .accordion-button span {
+        margin-left: 0;
+    }
+}
+
+/* ============================================================
+   RTL: Service detail feature bar (price + meta icons)
+   ============================================================ */
+html[dir="rtl"] .tg-tour-details-feature-list-wrap .row.align-items-center {
+    direction: rtl;
+}
+
+@media (min-width: 992px) {
+    html[dir="rtl"] .tg-tour-details-feature-list-wrap .row.align-items-center > .col-lg-8 {
+        order: 1;
+    }
+
+    html[dir="rtl"] .tg-tour-details-feature-list-wrap .row.align-items-center > .col-lg-4 {
+        order: 2;
+    }
+}
+
+html[dir="rtl"] .tg-tour-details-video-feature-list ul li {
+    flex-direction: row;
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-tour-details-video-feature-list ul li:not(:last-child) {
+    margin-right: 0;
+    margin-left: 35px;
+}
+
+html[dir="rtl"] .tg-tour-details-video-feature-list ul li .icon {
+    margin-right: 0;
+    margin-left: 11px;
+}
+
+html[dir="rtl"] .tg-tour-details-video-feature-list ul li .title {
+    text-align: right;
+}
+
+html[dir="rtl"] .tg-tour-details-video-feature-list ul li .duration {
+    unicode-bidi: isolate;
+}
+
+html[dir="rtl"] .tg-tour-details-video-feature-price p {
+    justify-content: flex-start;
+}
+
+html[dir="rtl"] .tg-tour-details-video-feature-price {
+    text-align: left !important;
+    direction: ltr;
+}
+
+html[dir="rtl"] .tg-tour-details-video-feature-price .service-price_display {
+    text-align: left;
+    direction: rtl;
+    unicode-bidi: isolate;
+}
+
+html[dir="rtl"] .tg-tour-details-video-feature-price p span {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+@media (max-width: 767px) {
+    html[dir="rtl"] .tg-tour-details-video-feature-list ul li:not(:last-child) {
+        margin-left: 0;
+    }
+
+    html[dir="rtl"] .tg-tour-details-video-feature-list ul li.languages-item {
+        justify-content: flex-end;
+    }
+}
+
+/* ============================================================
+   RTL: Tour plan itinerary metadata rows
+   ============================================================ */
+.itinerary-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.itinerary-meta-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+html[dir="rtl"] .itinerary-meta-label {
+    flex-direction: row;
+}
+
+.itinerary-meta-label i {
+    font-size: 16px;
+    color: var(--tg-theme-primary);
+    width: 20px;
+    text-align: center;
+}
+
+html[dir="rtl"] .itinerary-meta-label i {
+    order: 0;
+}
+
+html[dir="rtl"] .itinerary-meta-label span {
+    order: 1;
+}
+
+html[dir="rtl"] .tg-tour-about-faq .accordion-body {
+    text-align: right;
+}
+
+html[dir="rtl"] .itinerary-meta-row {
+    direction: rtl;
+}
+/* Removed individual item reverse to let natural RTL flow handle icon-then-text */
+html[dir="rtl"] .itinerary-meta-badge {
+    unicode-bidi: isolate;
+}
+
+/* ============================================================
+   Theme 6 — Booking Form (Reference-style redesign)
+   ============================================================ */
+
+/* ── Wrapper ── */
+.t6bf-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Tabs row ── */
+.t6bf-tabs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-inline-start: 20px;
+    margin-bottom: 0;
+}
+
+.t6bf-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 22px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    border-bottom: none;
+    border-radius: 14px 14px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.88);
+    cursor: pointer;
+    transition: background 0.22s, color 0.22s, box-shadow 0.22s;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    line-height: 1;
+}
+
+.t6bf-tab:hover {
+    background: rgba(255, 255, 255, 0.88);
+    color: #1f2937;
+}
+
+.t6bf-tab--active,
+.t6bf-tab.active {
+    background: #ffffff;
+    color: #1f2937;
+    border-color: #ffffff;
+    box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.10);
+}
+
+.t6bf-tab-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Bootstrap 5 tabs: visibility is controlled by .show (not only .active). */
+.t6bf-wrapper .tab-content > .tab-pane:not(.show) {
+    display: none !important;
+}
+
+.t6bf-wrapper .tab-content > .tab-pane.show {
+    display: block !important;
+}
+
+/* ── Card ── */
+.t6bf-card {
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.13);
+    padding: 26px 28px 22px;
+}
+
+/* First tab active → cut top-left corner to merge with tab */
+.t6bf-panel--first-active .t6bf-card {
+    border-radius: 0 18px 18px 18px;
+}
+
+/* ── Fields row ── */
+.t6bf-fields {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0;
+}
+
+/* ── Single field ── */
+.t6bf-field {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0 18px;
+}
+
+.t6bf-field:first-child {
+    padding-inline-start: 4px;
+}
+
+.t6bf-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #9ca3af;
+    margin-bottom: 6px;
+    white-space: nowrap;
+}
+
+/* ── Trigger (destination / guests) ── */
+.t6bf-input-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    min-height: 36px;
+    user-select: none;
+}
+
+.t6bf-value {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+}
+
+.t6bf-placeholder {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.t6bf-field-icon {
+    flex-shrink: 0;
+    color: #9ca3af;
+}
+
+/* ── Date field ── */
+.t6bf-date-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 36px;
+}
+
+.t6bf-date-input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    font-size: 14px;
+    color: #111827;
+}
+
+.t6bf-date-input::placeholder {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+/* ── Vertical divider ── */
+.t6bf-divider {
+    width: 1px;
+    height: 46px;
+    background: #e5e7eb;
+    flex-shrink: 0;
+}
+
+/* ── Search button ── */
+.t6bf-search-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    background: var(--tg-theme-primary, #c62828);
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-inline-start: 14px;
+    transition: opacity 0.2s, transform 0.15s;
+    line-height: 1;
+}
+
+.t6bf-search-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+
+/* ── Tablet / small screens ── */
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .t6bf-fields {
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    .t6bf-field {
+        flex: 1 1 calc(50% - 2px);
+        min-width: 180px;
+        padding: 10px 14px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .t6bf-divider {
+        display: none;
+    }
+
+    .t6bf-search-btn {
+        width: 100%;
+        justify-content: center;
+        margin-inline-start: 0;
+        margin-top: 12px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 767px) {
+    .t6bf-card {
+        border-radius: 0 12px 12px 12px;
+        padding: 20px 18px 18px;
+    }
+
+    .t6bf-tabs-row {
+        padding-inline-start: 8px;
+    }
+
+    .t6bf-tab {
+        padding: 9px 14px;
+        font-size: 13px;
+    }
+
+    .t6bf-fields {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .t6bf-field {
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .t6bf-divider {
+        display: none;
+    }
+
+    .t6bf-search-btn {
+        width: 100%;
+        justify-content: center;
+        margin-inline-start: 0;
+        margin-top: 16px;
+        border-radius: 12px;
+    }
+}
+
+/* ── RTL overrides ── */
+html[dir="rtl"] .t6bf-tabs-row {
+    padding-inline-start: 0;
+    padding-inline-end: 20px;
+}
+
+html[dir="rtl"] .t6bf-card {
+    border-radius: 18px 0 18px 18px;
+}
+
+html[dir="rtl"] .t6bf-field:first-child {
+    padding-inline-start: 18px;
+    padding-inline-end: 4px;
+}
+
+html[dir="rtl"] .t6bf-search-btn {
+    margin-inline-start: 0;
+    margin-inline-end: 14px;
+}
+
+html[dir="rtl"] .tg-booking-form-location-list,
+html[dir="rtl"] .tg-booking-form-location-list.tg-list-open {
+    left: auto;
+    right: 0;
+}
+
+html[dir="rtl"] .tg-booking-form-location-list.tg-quantity,
+html[dir="rtl"] .tg-booking-form-location-list.tg-quantity.tg-list-open {
+    left: 0;
+    right: auto;
+}
+
+.service-type-btn { display: inline-flex !important; align-items: center !important; justify-content: center !important; background: rgba(255, 255, 255, 0.12) !important; backdrop-filter: blur(12px) !important; -webkit-backdrop-filter: blur(12px) !important; border: 1px solid rgba(255, 255, 255, 0.25) !important; color: #fff !important; border-radius: 40px !important; padding: 10px 24px !important; font-size: 15px !important; font-weight: 500 !important; cursor: pointer !important; transition: all 0.3s ease !important; box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important; }
+.service-type-btn:hover { background: rgba(255, 255, 255, 0.25) !important; transform: translateY(-2px) !important; }
+.service-type-btn.is-active { background: var(--tg-theme-primary) !important; border-color: var(--tg-theme-primary) !important; color: #fff !important; box-shadow: 0 6px 20px rgba(0,0,0,0.15) !important; }
+.service-type-btn .service-icon { filter: brightness(0) invert(1) !important; }
+
+/* ============================================================
+   Theme 2 — Hero: full viewport width + tall cover image (no side gaps / no pill curve)
+   ============================================================ */
+body.td_theme_2 .theme2-hero--fullwidth {
+    width: 100vw;
+    max-width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    padding-inline: 0 !important;
+    overflow: hidden;
+}
+
+body.td_theme_2 .theme2-hero--fullwidth .tg-hero-2-content {
+    border-radius: 0 !important;
+    width: 100%;
+    max-width: none;
+    min-height: min(88vh, 920px);
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: clamp(100px, 18vh, 220px);
+    padding-bottom: clamp(100px, 18vh, 260px);
+}
+
+@media (max-width: 991px) {
+    body.td_theme_2 .theme2-hero--fullwidth .tg-hero-2-content {
+        min-height: min(82vh, 780px);
+    }
+}
+
+body.td_theme_2 .theme2-hero--fullwidth .tg-hero-2-title,
+body.td_theme_2 .theme2-home-hero-stack .tg-hero-2-description.theme2-hero-subline {
+    padding-inline: clamp(16px, 4vw, 28px);
+    box-sizing: border-box;
+}
+
+/* Second hero line — bold sans, reference layout */
+body.td_theme_2 .tg-hero-2-description.theme2-hero-subline {
+    color: #fff !important;
+    font-size: clamp(28px, 4.2vw, 46px);
+    font-weight: 700;
+    text-transform: none;
+    max-width: 920px;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.45);
+    line-height: 1.25;
+    margin-bottom: 0 !important;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .theme2-hero--fullwidth .tg-hero-2-content {
+    padding-bottom: clamp(160px, 26vh, 340px);
+}
+
+/*
+ * Homepage stack — booking overlaps hero inside this subtree (isolation).
+ * Avoid z-index stacking above the nav: hero at z-index 1 sat above header (auto),
+ * so submenus + lang menu rendered under the hero and could not be used.
+ */
+body.td_theme_2 .theme2-home-hero-stack {
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+}
+
+body.td_theme_2 header.tg-header-height {
+    position: relative;
+    z-index: 100;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-area.tg-grey-bg {
+    background: transparent !important;
+    position: relative;
+    z-index: 2;
+    padding-bottom: clamp(48px, 8vw, 72px);
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-space {
+    margin-top: clamp(-120px, -12vw, -72px);
+    margin-bottom: 0;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-wrap.tg-booking-form-space {
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.14), 0 2px 0 rgba(255, 255, 255, 0.45) inset;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    padding: 28px clamp(22px, 3vw, 40px) 22px clamp(22px, 3vw, 40px);
+    max-width: min(1180px, calc(100% - 32px));
+    margin-inline: auto;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-tabs {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+    margin-bottom: 18px;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-tabs .nav-links.active {
+    color: var(--tg-theme-primary, #c62828);
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-tabs .nav-links.active span:not(.icon) {
+    font-weight: 600;
+}
+
+/* Theme 2 homepage booking — layout + reference styling */
+body.td_theme_2 .theme2-home-hero-stack .theme2-booking-ref .tg-booking-form-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--tg-common-black, #1a1a1a);
+    letter-spacing: 0.02em;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-tabs #nav-tab {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: center;
+    row-gap: 0.75rem;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-tabs .nav-links:not(.active) {
+    color: #94a3b8;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-tabs .nav-links:not(.active) .icon img {
+    opacity: 0.55;
+    filter: grayscale(1);
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-tabs .nav-links:not(.active) .icon i {
+    color: #94a3b8;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-tabs .nav-links.active .borders {
+    height: 3px;
+    bottom: -2px;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-tabs .nav-links.active .icon img {
+    filter: none;
+    opacity: 1;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .theme2-booking-fields .tg-booking-add-input-field {
+    width: 100%;
+    max-width: 100%;
+    min-height: 44px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding-inline: 14px 42px;
+    align-items: center;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .theme2-booking-fields .tg-booking-add-input-date .input {
+    width: 100%;
+    max-width: 100%;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding-left: 14px;
+    padding-right: 48px;
+    min-height: 44px;
+    height: auto;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .theme2-booking-fields .tg-booking-add-input-field .tg-booking-title-value {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .theme2-bk-search {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: auto;
+    min-width: min(240px, 100%);
+    padding: 12px 28px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    background: var(--tg-theme-primary, #c62828) !important;
+    border: none;
+    color: var(--tg-common-white) !important;
+    box-shadow: 0 4px 14px rgba(198, 40, 40, 0.28);
+}
+
+body.td_theme_2 .theme2-home-hero-stack .theme2-bk-search:hover {
+    filter: brightness(1.06);
+    color: var(--tg-common-white) !important;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-search-btn {
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-search-btn {
+        width: auto;
+    }
+}
+
+html[dir="rtl"] body.td_theme_2 .theme2-home-hero-stack .theme2-booking-fields .tg-booking-add-input-field {
+    padding-inline: 42px 14px;
+}
+
+html[dir="rtl"] body.td_theme_2 .theme2-home-hero-stack .theme2-booking-fields .tg-booking-add-input-date .input {
+    padding-inline: 48px 14px;
+}
+
+/* Bootstrap tabs: only one pane visible */
+body.td_theme_2 .theme2-home-hero-stack .tab-content > .tab-pane:not(.show) {
+    display: none !important;
+}
+
+body.td_theme_2 .theme2-home-hero-stack .tab-content > .tab-pane.show {
+    display: block !important;
+}
+
+@media (max-width: 767px) {
+    body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-wrap.tg-booking-form-space {
+        border-radius: 16px;
+        padding: 20px 16px;
+    }
+
+    body.td_theme_2 .theme2-home-hero-stack .tg-booking-form-space {
+        margin-top: -72px;
+    }
+}
+
+/* Theme 2 — Glass-like top bar — blend into hero sky (reference) */
+body.td_theme_2 #header-sticky.tg-header__area {
+    background: rgba(255, 255, 255, 0.32) !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+body.td_theme_2 #header-sticky:not(.header-sticky).tg-header__area {
+    box-shadow: none;
+    position: relative;
+}
+
+body.td_theme_2 .tg-header-logo-bg {
+    background: rgba(255, 255, 255, 0.32) !important;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+body.td_theme_2 #header-sticky.header-sticky {
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+/* Theme 1 — Why choose: star-2.png slightly further right (LTR؛ العربي في theme1-rtl.css بعد .ml-15) */
+@media (min-width: 992px) {
+    body.td_theme_1 .tg-chose-area .tg-chose-thumb img.tg-chose-star-2 {
+        margin-left: 28px !important;
+    }
+}

@@ -1,0 +1,533 @@
+/* Top bar: datetime + icons — English (LTR) order in DOM: [cluster dt+site][mail][gear][lang], then [avatar].
+   For Arabic, mirror like English reference: [avatar][…icons…][site][datetime] reading left→right so datetime
+   sits on the “title” side; use LTR flex + row-reverse (not inherited document RTL). */
+.crancy-header__options {
+    direction: ltr;
+}
+
+html[dir="rtl"] .crancy-header__group-two > .crancy-header__right {
+    direction: ltr;
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .crancy-header__options {
+    direction: ltr;
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .crancy-header__options-cluster {
+    flex-direction: row-reverse;
+}
+
+.crancy-header__options-cluster {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.crancy-header__datetime {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    align-self: center;
+    min-width: 0;
+    max-width: 220px;
+    line-height: 1.25;
+    color: #5d6a83;
+    text-align: end;
+}
+
+/* Arabic date/time lines: isolate bidi so numbers + “م” don’t break layout */
+html[dir="rtl"] .crancy-header__datetime {
+    direction: rtl;
+    unicode-bidi: isolate;
+    align-items: flex-end;
+    text-align: end;
+}
+
+.crancy-header__datetime-date {
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.crancy-header__datetime-time {
+    font-size: 13px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+@media (max-width: 991px) {
+    .crancy-header__datetime {
+        max-width: 160px;
+    }
+
+    .crancy-header__datetime-date {
+        font-size: 13px;
+    }
+
+    .crancy-header__datetime-time {
+        font-size: 11px;
+    }
+}
+
+/* Admin header: language toggle matches other .crancy-header__blink buttons */
+button.crancy-header__blink {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+}
+
+button.crancy-header__blink:focus-visible {
+    outline: 2px solid var(--theme-color, #c62828);
+    outline-offset: 2px;
+}
+
+/* Phone / WhatsApp: keep +country code order correct in RTL (Arabic) */
+.crancy__item-input--phone,
+html[dir="rtl"] .crancy-adashboard input[type="tel"] {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: start;
+}
+
+.admin-lang-toggle__svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+.admin-currency-toggle__svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+.admin-currency-dropdown.admin-lang-dropdown {
+    min-width: 220px;
+    max-height: min(70vh, 360px);
+    overflow-y: auto;
+}
+
+/* One row: [icon] [single name] [rate] — override .admin-lang-dropdown__item { display: block } */
+a.admin-lang-dropdown__item.admin-currency-dropdown__item {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.admin-currency-dropdown__icon {
+    flex-shrink: 0;
+    font-size: 16px;
+    line-height: 1;
+    min-width: 1.35em;
+    text-align: center;
+}
+
+.admin-currency-dropdown__title {
+    flex: 1;
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-currency-dropdown__rate {
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    opacity: 0.85;
+    padding-inline-start: 4px;
+}
+
+.admin-lang-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    /* LTR header strip: menus grow leftward from the trigger’s right edge */
+    right: 0;
+    left: auto;
+    min-width: 148px;
+    padding: 6px 0;
+    background: #fff;
+    border: 1px solid rgba(20, 33, 43, 0.12);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(20, 33, 43, 0.1);
+    z-index: 10050;
+}
+
+/* Shrink positioning context to the button (avoids a wide flex item stretching the CB) */
+.crancy-header__group-two > .crancy-header__right .crancy-header__options [data-lang-dropdown],
+.crancy-header__group-two > .crancy-header__right .crancy-header__options [data-currency-dropdown] {
+    flex: 0 0 auto;
+    width: max-content;
+    max-width: 100%;
+}
+
+/*
+ * Arabic: .crancy-header__options uses row-reverse, so language + currency sit on the visual *left*
+ * of the icon row. right:0 makes wide menus extend left toward the logo; pin to left edge instead
+ * so they open toward the content (same idea as the avatar menu fix).
+ */
+html[dir="rtl"] .crancy-header__group-two > .crancy-header__right .crancy-header__options [data-lang-dropdown] .admin-lang-dropdown,
+html[dir="rtl"] .crancy-header__group-two > .crancy-header__right .crancy-header__options [data-currency-dropdown] .admin-lang-dropdown {
+    left: 0;
+    right: auto;
+}
+
+.admin-lang-dropdown__item {
+    display: block;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #14212b;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(20, 33, 43, 0.06);
+    transition: background 0.2s ease;
+}
+
+.admin-lang-dropdown__item:last-child {
+    border-bottom: none;
+}
+
+.admin-lang-dropdown__item:hover {
+    background: #fff5f5;
+}
+
+.admin-lang-dropdown__item.is-active {
+    font-weight: 600;
+    background: #ffebee;
+    color: var(--theme-color, #c62828);
+}
+
+/*
+ * Profile menu under the avatar: only the author block is a direct .crancy-header__single child of
+ * .crancy-header__right (icons inside .crancy-header__options are nested deeper).
+ * In RTL we row-reverse the strip so the avatar sits on the visual left; anchoring with right:0
+ * makes a wide menu grow leftward under the logo — use left:0 in rtl so it opens toward the content.
+ */
+.crancy-header__group-two > .crancy-header__right > .crancy-header__single .crancy-dropdown.crancy-dropdown--acount {
+    top: calc(100% + 10px);
+    right: 0;
+    left: auto;
+    text-align: start;
+    z-index: 10050;
+}
+
+html[dir="rtl"] .crancy-header__group-two > .crancy-header__right > .crancy-header__single .crancy-dropdown.crancy-dropdown--acount {
+    left: 0;
+    right: auto;
+}
+
+.destination.crancy-btn {
+    height: auto !important;
+}
+
+.badge.badge-success {
+    background: green;
+}
+
+span.badge.badge-info {
+    background: orange;
+}
+
+html[dir="rtl"] .crancy-smenu {
+    left: auto;
+    right: 0;
+    border-right: 0;
+    border-left: 1px solid #e8edff;
+}
+
+html[dir="rtl"] .crancy-adashboard {
+    margin-left: 0;
+    margin-right: 290px;
+    border-left: 0;
+    border-right: 1px solid #f0f0f5;
+}
+
+html[dir="rtl"] .crancy-adashboard.crancy-close {
+    margin-left: 0;
+    margin-right: 115px;
+}
+
+/* Header sits beside fixed sidebar: LTR uses padding-left ~330px; RTL must use padding-right the same
+   (was 20px here → title/breadcrumb sat under the open right sidebar). */
+html[dir="rtl"] .crancy-header__middle {
+    padding-left: 40px !important;
+    padding-right: 330px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+html[dir="rtl"] .crancy-header.crancy-close .crancy-header__middle {
+    padding-left: 40px !important;
+    padding-right: 152px !important;
+}
+
+html[dir="rtl"] .crancy-header.crancy-close .crancy__sicon {
+    left: auto;
+    right: 115px;
+    border-radius: 10px 0 0 10px !important;
+}
+
+@media only screen and (min-width: 1279px) and (max-width: 1550px) {
+    html[dir="rtl"] .crancy-adashboard {
+        margin-left: 0;
+        margin-right: 270px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    html[dir="rtl"] .crancy-adashboard.crancy-close {
+        margin-left: 0;
+        margin-right: 90px;
+    }
+
+    html[dir="rtl"] .crancy-header__middle {
+        padding-left: 40px !important;
+        padding-right: 310px !important;
+    }
+
+    html[dir="rtl"] .crancy-header.crancy-close .crancy-header__middle {
+        padding-left: 40px !important;
+        padding-right: 130px !important;
+    }
+
+    html[dir="rtl"] .crancy-header.crancy-close .crancy__sicon {
+        right: 90px;
+        left: auto;
+    }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 1278px) {
+    html[dir="rtl"] .crancy-smenu {
+        left: auto;
+        right: 0;
+        transform: translateX(100%);
+    }
+
+    html[dir="rtl"] .crancy-smenu.crancy-close {
+        transform: translateX(0%);
+    }
+
+    html[dir="rtl"] .crancy-header.crancy-close .crancy__sicon {
+        left: auto;
+        right: 0;
+    }
+
+    html[dir="rtl"] .crancy-smenu.crancy-close .menu-bar li,
+    html[dir="rtl"] .crancy-smenu.crancy-close .admin-menu__title {
+        text-align: right;
+    }
+
+    html[dir="rtl"] .crancy-smenu.crancy-close .menu-bar li a {
+        justify-content: flex-start;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    html[dir="rtl"] .crancy-smenu.crancy-close .crancy-menu-icon {
+        margin-right: 0 !important;
+        margin-left: 14px !important;
+    }
+
+    html[dir="rtl"] .crancy-smenu.crancy-close .crancy__dropdown {
+        left: auto;
+        right: 114%;
+        margin-left: 0;
+        margin-right: 40px;
+    }
+
+    html[dir="rtl"] .crancy-smenu .crancy-sidebar-padding,
+    html[dir="rtl"] .crancy-smenu.crancy-close .crancy-sidebar-padding {
+        padding-left: 25px !important;
+        padding-right: 25px !important;
+    }
+
+    html[dir="rtl"] .crancy-adashboard {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    html[dir="rtl"] .crancy-header__middle {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+/* -------------------------------------------------------------------------
+   RTL (Arabic): Crancy tables + DataTables
+   - style.css forces text-align: left on .crancy-table__main cells.
+   - Use explicit text-align: right so every cell lines up with its header (same as
+     English uses left+left); avoid unicode-bidi: plaintext — it pins Latin text to
+     the wrong edge under Arabic headers.
+   - Bootstrap RTL row order: do not row-reverse DataTables .row.
+   ------------------------------------------------------------------------- */
+
+html[dir="rtl"] .crancy-table__main .crancy-table__head tr th,
+html[dir="rtl"] .crancy-table__main .crancy-table__body tr td {
+    text-align: right !important;
+}
+
+/* Nested product row (style.css sets text-align: left on .crancy-table__product) */
+html[dir="rtl"] .crancy-table__main .crancy-table__product {
+    text-align: right !important;
+    flex-direction: row-reverse;
+}
+
+/* Booking codes / Latin IDs: LTR string but flush to column’s header edge (physical right) */
+html[dir="rtl"] .crancy-table__main td.crancy-table__cell-ltr,
+html[dir="rtl"] .crancy-table__main th.crancy-table__cell-ltr {
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+    text-align: right !important;
+}
+
+/* DataTables + BS RTL: keep natural row direction */
+html[dir="rtl"] div.dataTables_wrapper > .row {
+    flex-direction: row !important;
+}
+
+html[dir="rtl"] div.dataTables_wrapper div.dataTables_length,
+html[dir="rtl"] div.dataTables_wrapper div.dataTables_length label {
+    text-align: start !important;
+    float: none !important;
+}
+
+html[dir="rtl"] div.dataTables_wrapper div.dataTables_filter {
+    text-align: end !important;
+    float: none !important;
+}
+
+html[dir="rtl"] div.dataTables_wrapper div.dataTables_filter label {
+    text-align: inherit !important;
+    float: none !important;
+    display: inline-flex !important;
+    flex-direction: row-reverse !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+html[dir="rtl"] div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline-start: 0 !important;
+    margin-inline-end: 0.5em !important;
+}
+
+html[dir="rtl"] .dataTables_length select {
+    text-align: start !important;
+    background-position: left 12px center !important;
+}
+
+html[dir="rtl"] div.dataTables_wrapper div.dataTables_info {
+    text-align: start !important;
+    float: none !important;
+}
+
+html[dir="rtl"] div.dataTables_wrapper div.dataTables_paginate,
+html[dir="rtl"] .dataTables_wrapper .dataTables_paginate {
+    text-align: end !important;
+    float: none !important;
+}
+
+html[dir="rtl"] div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    direction: rtl !important;
+    justify-content: flex-end !important;
+}
+
+/* Sort icons: keep on physical right (with header text starting at inline-start) */
+html[dir="rtl"] table.dataTable > thead > tr > th:not(.sorting_disabled) {
+    padding-right: 30px !important;
+    padding-left: 11px !important;
+}
+
+html[dir="rtl"] table.dataTable > thead .sorting:before,
+html[dir="rtl"] table.dataTable > thead .sorting_asc:before,
+html[dir="rtl"] table.dataTable > thead .sorting_desc:before,
+html[dir="rtl"] table.dataTable > thead .sorting_asc_disabled:before,
+html[dir="rtl"] table.dataTable > thead .sorting_desc_disabled:before {
+    right: 1em !important;
+    left: auto !important;
+}
+
+html[dir="rtl"] table.dataTable > thead .sorting:after,
+html[dir="rtl"] table.dataTable > thead .sorting_asc:after,
+html[dir="rtl"] table.dataTable > thead .sorting_desc:after,
+html[dir="rtl"] table.dataTable > thead .sorting_asc_disabled:after,
+html[dir="rtl"] table.dataTable > thead .sorting_desc_disabled:after {
+    right: 0.5em !important;
+    left: auto !important;
+}
+
+html[dir="rtl"] table.dataTable.table-sm > thead > tr > th:not(.sorting_disabled) {
+    padding-right: 20px !important;
+    padding-left: 8px !important;
+}
+
+html[dir="rtl"] table.dataTable.crancy-table__main thead th,
+html[dir="rtl"] table.dataTable.crancy-table__main tbody td {
+    text-align: right !important;
+}
+
+html[dir="rtl"] table.dataTable.crancy-table__main thead th.crancy-table__head-phone,
+html[dir="rtl"] table.dataTable.crancy-table__main tbody td.crancy-table__cell-phone,
+html[dir="rtl"] table.dataTable.crancy-table__main tbody td.crancy-table__cell-phone .crancy-table__product-title {
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+    text-align: right !important;
+}
+
+html[dir="rtl"] table.dataTable.crancy-table__main tbody td:has(.crancy-ptabs__notify-switch) {
+    text-align: right !important;
+    unicode-bidi: embed;
+}
+
+/* Action / badges: same column edge as header (mirrors LTR left stack under left header) */
+html[dir="rtl"] .crancy-table__main .crancy-table__body tr td:has(a.crancy-action__btn),
+html[dir="rtl"] .crancy-table__main .crancy-table__body tr td:has(.crancy-action__edit),
+html[dir="rtl"] table.dataTable.crancy-table__main tbody td:has(a.crancy-action__btn),
+html[dir="rtl"] table.dataTable.crancy-table__main tbody td:has(.crancy-action__edit) {
+    text-align: right !important;
+    unicode-bidi: isolate;
+}
+
+html[dir="rtl"] table.dataTable.crancy-table__main tbody td:has(span.crancy-badge):not(:has(a.crancy-action__btn)),
+html[dir="rtl"] .crancy-table__main tbody td:has(span.crancy-badge):not(:has(a.crancy-action__btn)) {
+    text-align: right !important;
+}
+
+html[dir="rtl"] .crancy-table__main a.crancy-action__btn {
+    direction: ltr;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+html[dir="rtl"] .crancy-btn.delete_danger_btn {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline-start: 10px !important;
+}
+
+html[dir="rtl"] .crancy-table-bottom {
+    flex-direction: row !important;
+}
+
+/* TinyMCE: hide Cloud promotion (Upgrade) + status bar logo — backup if JS defaults miss */
+.tox .tox-promotion,
+.tox .tox-statusbar__branding {
+    display: none !important;
+}

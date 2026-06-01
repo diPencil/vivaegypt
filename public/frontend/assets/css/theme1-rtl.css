@@ -1,0 +1,395 @@
+/* Theme 1 — RTL overrides (loaded with custom.css when lang is RTL) */
+
+/* -----------------------------------------------------------------
+   Why choose (Discover) — العربي: عكس الخانتين صراحةً عن الإنجليزي
+   EN: [ نص col-5 | صور col-7 ]  →  AR: [ صور | نص ] بـ order + صف LTR
+   ----------------------------------------------------------------- */
+@media (min-width: 992px) {
+    html[dir="rtl"] body.td_theme_1 .tg-chose-area > .container > .row {
+        direction: ltr;
+        flex-direction: row;
+    }
+
+    html[dir="rtl"] body.td_theme_1 .tg-chose-area > .container > .row > .col-lg-7 {
+        order: 1;
+    }
+
+    html[dir="rtl"] body.td_theme_1 .tg-chose-area > .container > .row > .col-lg-5 {
+        order: 2;
+    }
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-content {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-section-title,
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-list-wrap {
+    text-align: right;
+}
+
+/* قائمة المميزات: الأب RTL يضع الأيقونة يمين النص — تباعد موحّد */
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-list.d-flex {
+    gap: 20px;
+    align-items: flex-start;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-list .tg-chose-list-icon.mr-20 {
+    margin: 0 !important;
+}
+
+/* خريطة الخلفية — مرآة الإنجليزي (يمين) */
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-shape {
+    left: auto;
+    right: 0;
+}
+
+/*
+ * كتلة الصور — تنسيق معكوس للعربي (مرآة الإنجليزي):
+ * صورة كبيرة يسار، صغيرة يمين تتداخل، TRAVEL خارج اليسار، زخرفة الخريطة يمين
+ */
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-right {
+    margin-left: 50px;
+    margin-right: 33px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-right {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-right > .row {
+    direction: ltr;
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-thumb {
+    margin-left: -143px !important;
+    margin-right: 0 !important;
+    /*
+     * المحتوى الداخلي يبقى LTR مثل الإنجليزي: نجمة فوق الصورة + نفس الهوامش.
+     * عكس الصفحة يتم بصف الصور (row-reverse) وليس بعكس اتجاه هذه الحاوية —
+     * وإلا تتحول محاذاة النجمة/الصورة وتبدو غير مرآة للنسخة الإنجليزية.
+     */
+    direction: ltr;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-thumb .tg-chose-shape-2 {
+    position: relative;
+    z-index: 2;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-thumb > img.w-100 {
+    position: relative;
+    z-index: 1;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-thumb {
+        margin-left: 0 !important;
+    }
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-thumb .ml-15 {
+    margin-left: 15px !important;
+    margin-right: 0 !important;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-big-text {
+    left: auto;
+    right: 103%;
+    -webkit-transform: rotate(90deg) translateY(-188px);
+    transform: rotate(90deg) translateY(-188px);
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1599px),
+only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-big-text {
+        left: auto;
+        right: 98%;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-big-text {
+        left: auto;
+        right: 106%;
+    }
+}
+
+/* زر الحجز: محاذاة يمين مع عمود الأيقونات (نفس المحور الرأسي)، وليس في منتصف العمود */
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-btn {
+    text-align: right;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-chose-area .tg-chose-btn .btn-icon.ml-5 {
+    margin-left: 0 !important;
+    margin-right: 5px;
+}
+
+/* Hero: price subtitle spacing */
+html[dir="rtl"] body.td_theme_1 .tg-hero-price-wrap > p.mr-15 {
+    margin-right: 0 !important;
+    margin-left: 15px;
+}
+
+/* Video + text banner: tree decoration (was right:0 on navy card) */
+html[dir="rtl"] body.td_theme_1 .tg-banner-space .tg-banner-content:not(.tg-banner-3-content) .tg-banner-shape {
+    left: 0;
+    right: auto;
+}
+
+/* Destination section tower shape */
+html[dir="rtl"] body.td_theme_1 .tg-location-area .tg-location-shape {
+    left: auto;
+    right: 70px;
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1599px),
+only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] body.td_theme_1 .tg-location-area .tg-location-shape {
+        left: auto;
+        right: 0;
+    }
+}
+
+/* Listing / package: mirror decorative assets (LTR uses right/right/left) */
+html[dir="rtl"] body.td_theme_1 .tg-listing-area .tg-listing-shape {
+    right: auto;
+    left: 172px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] body.td_theme_1 .tg-listing-area .tg-listing-shape {
+        right: auto;
+        left: 0;
+    }
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-listing-area .tg-listing-shape-2 {
+    right: auto;
+    left: 61px;
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1599px),
+only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] body.td_theme_1 .tg-listing-area .tg-listing-shape-2 {
+        right: auto;
+        left: 0;
+    }
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-listing-area .tg-listing-shape-3 {
+    left: auto;
+    right: 33px;
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1599px),
+only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] body.td_theme_1 .tg-listing-area .tg-listing-shape-3 {
+        left: auto;
+        right: 0;
+    }
+}
+
+/* Newsletter: arrow icon points toward submit side in RTL */
+html[dir="rtl"] body.td_theme_1 .tg-footer-form-btn svg {
+    transform: scaleX(-1);
+}
+
+/* -----------------------------------------------------------------
+   About (Tripian): RTL — عكس الأعمدة + تداخل الصور كمرآة للـ LTR
+   ----------------------------------------------------------------- */
+@media (min-width: 992px) {
+    html[dir="rtl"] body.td_theme_1 .tg-about-area > .container > .row {
+        flex-direction: row-reverse;
+    }
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-about-area .tg-about-content {
+    direction: rtl;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-about-content.text-center {
+    text-align: center !important;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-about-area .tg-about-thumb-wrap {
+    display: flow-root;
+}
+
+/* بعد row-reverse: عمود الصور الأصلي يساراً يصبح يميناً — تعويم نحو الوسط */
+html[dir="rtl"] body.td_theme_1 .tg-about-area .tg-about-thumb-2 {
+    float: left !important;
+    margin-left: -15px !important;
+    margin-right: 0 !important;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-about-area .tg-about-thumb-4 {
+    margin-left: 0 !important;
+    margin-right: -15px !important;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+    html[dir="rtl"] body.td_theme_1 .tg-about-area .tg-about-thumb-2 {
+        float: none !important;
+        margin-right: 0 !important;
+    }
+
+    html[dir="rtl"] body.td_theme_1 .tg-about-area .tg-about-thumb-4 {
+        margin-left: 0 !important;
+    }
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-about-area .tp-about-btn-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-about-area .tp-about-btn-wrap .tg-btn-switch-animation {
+    max-width: 100%;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-about-area .tg-about-logo {
+    text-align: center;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-about-area .tg-about-logo img {
+    display: block;
+    margin-inline: auto;
+}
+
+/* Banner 2: same — centered block */
+html[dir="rtl"] body.td_theme_1 .tg-banner-2-content.text-center {
+    text-align: center !important;
+}
+
+/*
+ * star-2.png (العربي): نحية يمين كارت الصورة الصغيرة — العمود flex-start كان ملزقها يسار العمود.
+ * flex-end يحاذيها لحافة يمين عمود .tg-chose-thumb مع هامش بسيط من الحافة.
+ */
+@media (min-width: 992px) {
+    html[dir="rtl"]
+        body.td_theme_1
+        .tg-chose-area
+        .tg-chose-thumb
+        img.tg-chose-shape-2.tg-chose-star-2.ml-15 {
+        align-self: flex-end;
+        margin-left: 0 !important;
+        margin-right: 12px !important;
+    }
+}
+
+/* Header RTL — single-row nav + spacing mirrors LTR fixes */
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) .tgmenu__nav.ml-180 {
+    margin-left: 0 !important;
+    margin-right: 64px !important;
+}
+
+@media (min-width: 1200px) {
+    html[dir="rtl"] body:is(.inner_page, .td_theme_1) .tgmenu__navbar-wrap .navigation {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    html[dir="rtl"] body:is(.inner_page, .td_theme_1) .tgmenu__navbar-wrap .navigation > li > a {
+        white-space: nowrap !important;
+    }
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) .navigation > li {
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) .navigation > li:last-child {
+    margin-left: 0 !important;
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) .tg-header-contact-icon.mr-5 {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+
+/* Cart / lang / login / burger spacing: see custom.css (#header-sticky .tg-menu-right-action gap rules) */
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) .tg-header-cart .tg-header-border {
+    left: auto !important;
+    right: 0 !important;
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) .tg-header-menu-bar .tg-header-border {
+    left: auto !important;
+    right: 0 !important;
+}
+
+html[dir="rtl"] body:is(.inner_page, .td_theme_1) .navigation li .sub-menu {
+    right: 0 !important;
+    left: auto !important;
+    text-align: right !important;
+}
+
+/* Booking Form RTL Fixes */
+html[dir="rtl"] body.td_theme_1 .tg-booking-form-item .location,
+html[dir="rtl"] body.td_theme_1 .tg-booking-form-item .tg-booking-add-input-date span {
+    right: 14px !important;
+    left: auto !important;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-booking-form-item .tg-booking-add-input-field {
+    padding-right: 40px !important;
+    padding-left: 30px !important;
+    text-align: right;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-booking-form-item .tg-booking-add-input-date input {
+    padding-right: 40px !important;
+    padding-left: 15px !important;
+    text-align: right;
+}
+
+html[dir="rtl"] body.td_theme_1 .tg-booking-quantity-toggle::after,
+html[dir="rtl"] body.td_theme_1 .tg-booking-add-input-date::after {
+    left: 15px !important;
+    right: auto !important;
+}

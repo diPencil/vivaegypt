@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/specialbooking",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\SpecialBooking\\": "",
+            "Modules\\SpecialBooking\\App\\": "app/",
+            "Modules\\SpecialBooking\\Database\\Factories\\": "database/factories/",
+            "Modules\\SpecialBooking\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\SpecialBooking\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,396 @@
+{
+    "theme3_hero": {
+        "builder": true,
+        "name": "Theme3 Hero Section",
+        "theme": "theme3",
+        "order": 1,
+        "page": "home",
+        "content": {
+            "title": {
+                "type": "text",
+                "label": "Main Title",
+                "required": true,
+                "help": "Main title with HTML formatting"
+            },
+            "sub_title": {
+                "type": "text",
+                "label": "Sub Title",
+                "required": true,
+                "help": "Sub title with HTML formatting"
+            },
+            "description": {
+                "type": "text",
+                "label": "Description",
+                "required": true,
+                "help": "Description with HTML formatting"
+            },
+            "peoples_image": {
+                "type": "image",
+                "label": "Peoples Image",
+                "help": "Peoples image (230x50px recommended)",
+                "size": "230x50px"
+            },
+            "background_image": {
+                "type": "image",
+                "label": "Hero Background Image",
+                "help": "Background image for this hero (1920x720px recommended)",
+                "size": "1600x600px",
+                "required": true
+            }
+        }
+    },
+    "theme3_destination": {
+        "builder": true,
+        "name": "Theme3 Destination Section",
+        "theme": "theme3",
+        "order": 2,
+        "page": "home",
+        "content": {
+            "show_navigation": {
+                "type": "radio",
+                "label": "Show Navigation",
+                "required": true,
+                "options": {
+                    "1": "Yes",
+                    "0": "No"
+                },
+                "inline": true,
+                "default": "1"
+            },
+            "sub_title": {
+                "type": "text",
+                "label": "Sub Title",
+                "required": true,
+                "help": "Sub title with HTML formatting"
+            },
+            "title": {
+                "type": "text",
+                "label": "Main Title",
+                "required": true,
+                "help": "Main title with HTML formatting"
+            }
+        }
+    },
+    "theme3_about": {
+        "builder": true,
+        "name": "Theme3 About Section",
+        "theme": "theme3",
+        "order": 3,
+        "page": "home",
+        "content": {
+            "left_side_image": {
+                "type": "image",
+                "label": "Left Side Image",
+                "help": "Image for this slide (476x542px recommended)",
+                "size": "476x542px",
+                "required": true
+            },
+            "sub_title": {
+                "type": "text",
+                "label": "Sub Title",
+                "required": true,
+                "help": "Sub title with HTML formatting"
+            },
+            "title": {
+                "type": "text",
+                "label": "Main Title",
+                "required": true,
+                "help": "Main title with HTML formatting"
+            },
+            "description": {
+                "type": "textarea",
+                "label": "Description",
+                "help": "Description with HTML formatting"
+            },
+            "slides": {
+                "type": "repeater",
+                "label": "Slide Items",
+                "min": 1,
+                "max": 6,
+                "sortable": true,
+                "fields": {
+                    "image": {
+                        "type": "image",
+                        "label": "Slide Image",
+                        "help": "Image for this slide (70x70px recommended)",
+                        "size": "70x70px"
+                    },
+                    "title": {
+                        "type": "text",
+                        "label": "Slide Title",
+                        "help": "Title for this slide",
+                        "required": true
+                    },
+                    "sub_title": {
+                        "type": "text",
+                        "label": "Sub Slide Title",
+                        "help": "Sub Title for this slide",
+                        "required": true
+                    }
+                }
+            },
+            "button_text": {
+                "type": "text",
+                "label": "Button Text",
+                "help": "Text to display on the button",
+                "required": true
+            },
+            "button_url": {
+                "type": "text",
+                "label": "Button Url",
+                "help": "Url to display on the button",
+                "required": true
+            },
+            "author_image": {
+                "type": "image",
+                "label": "Author Image",
+                "help": "Author Image (50x50px recommended)",
+                "size": "50x50px"
+            },
+            "author_title": {
+                "type": "text",
+                "label": "Author Title",
+                "help": "Author Title"
+            },
+            "author_sub_title": {
+                "type": "text",
+                "label": "Author Sub Title",
+                "help": "Author Sub Title"
+            }
+        }
+    },
+    "theme3_package": {
+        "builder": true,
+        "name": "Theme3 Package Section",
+        "theme": "theme3",
+        "order": 4,
+        "page": "home",
+        "content": {
+            "sub_title": {
+                "type": "text",
+                "label": "Sub Title",
+                "required": true,
+                "help": "Sub title with HTML formatting"
+            },
+            "title": {
+                "type": "text",
+                "label": "Main Title",
+                "required": true,
+                "help": "Main title with HTML formatting"
+            },
+            "button_text": {
+                "type": "text",
+                "label": "Button Text",
+                "help": "Text to display on the button",
+                "required": true
+            },
+            "button_url": {
+                "type": "text",
+                "label": "Button Url",
+                "help": "Url to display on the button",
+                "required": true
+            }
+        }
+    },
+    "theme3_ads": {
+        "builder": true,
+        "name": "Theme3 Ads Section",
+        "theme": "theme3",
+        "order": 5,
+        "page": "home",
+        "content": {
+            "sub_title": {
+                "type": "text",
+                "label": "Sub Title",
+                "required": true,
+                "help": "Main title with HTML formatting"
+            },
+            "title": {
+                "type": "text",
+                "label": "Main Title",
+                "required": true,
+                "help": "Main title with HTML formatting"
+            },
+            "description": {
+                "type": "textarea",
+                "label": "Description",
+                "required": true,
+                "help": "Description with HTML formatting"
+            },
+            "button_text": {
+                "type": "text",
+                "label": "Button Text",
+                "help": "Text to display on the button",
+                "required": true
+            },
+            "button_url": {
+                "type": "text",
+                "label": "Button Url",
+                "help": "Url to display on the button",
+                "required": true
+            },
+            "left_side_image": {
+                "type": "image",
+                "label": "Left Side Image",
+                "help": "Image for this slide (600x270px recommended)",
+                "size": "600x270px",
+                "required": true
+            },
+            "right_side_image": {
+                "type": "image",
+                "label": "Right Side Image",
+                "help": "Image for this slide (600x270px recommended)",
+                "size": "600x270px",
+                "required": true
+            }
+        }
+    },
+    "theme3_why_choose": {
+        "builder": true,
+        "name": "Theme3 Why Choose Section",
+        "theme": "theme3",
+        "order": 6,
+        "page": "home",
+        "content": {
+            "sub_title": {
+                "type": "text",
+                "label": "Sub Title",
+                "required": true,
+                "help": "Sub title with HTML formatting"
+            },
+            "title": {
+                "type": "text",
+                "label": "Main Title",
+                "required": true,
+                "help": "Main title with HTML formatting"
+            },
+            "description": {
+                "type": "textarea",
+                "label": "Description",
+                "help": "Description with HTML formatting"
+            },
+            "slides": {
+                "type": "repeater",
+                "label": "Slider Items",
+                "min": 1,
+                "max": 6,
+                "sortable": true,
+                "fields": {
+                    "title": {
+                        "type": "text",
+                        "label": "Slide Title",
+                        "help": "Title for this slide",
+                        "required": true
+                    },
+                    "link": {
+                        "type": "text",
+                        "label": "Slide Link",
+                        "help": "Link for this slide"
+                    },
+                    "description": {
+                        "type": "text",
+                        "label": "Slide Description",
+                        "help": "Description for this slide",
+                        "required": true
+                    },
+                    "icon": {
+                        "type": "image",
+                        "label": "Slide Icon",
+                        "help": "Icon for this slide (65x65px recommended)",
+                        "size": "65x65px"
+                    },
+                    "image": {
+                        "type": "image",
+                        "label": "Slide Image",
+                        "help": "Icon for this slide (390x270 recommended)",
+                        "size": "390x270px",
+                        "required": true
+                    }
+                }
+            }
+        }
+    },
+    "theme3_testimonial": {
+        "builder": true,
+        "name": "Theme3 Testimonial Section",
+        "theme": "theme3",
+        "order": 7,
+        "page": "home",
+        "content": {
+            "show_navigation": {
+                "type": "radio",
+                "label": "Show Navigation",
+                "required": true,
+                "options": {
+                    "1": "Yes",
+                    "0": "No"
+                },
+                "inline": true,
+                "default": "1"
+            }
+        }
+    },
+    "theme3_blog": {
+        "builder": true,
+        "name": "Theme3 Blog Section",
+        "theme": "theme1",
+        "order": 8,
+        "page": "home",
+        "content": {
+            "sub_title": {
+                "type": "text",
+                "label": "Sub Title",
+                "required": true,
+                "help": "Sub title with HTML formatting"
+            },
+            "title": {
+                "type": "text",
+                "label": "Main Title",
+                "required": true,
+                "help": "Main title with HTML formatting"
+            },
+            "description": {
+                "type": "textarea",
+                "label": "Button Text",
+                "help": "Brief description below the heading"
+            }
+        }
+    },
+     "theme3_cta": {
+        "builder": true,
+        "name": "Theme 3 CTA Section",
+        "theme": "theme2",
+        "order": 9,
+        "page": "home",
+        "content": {
+            "image": {
+                "type": "image",
+                "label": "Call to Action Image",
+                "help": "Call to action image (280x200px recommended)",
+                "size": "280X200px"
+            },
+            "sub_title": {
+                "type": "text",
+                "label": "Call to Action Subtitle",
+                "required": true,
+                "help": "Call to action subtitle"
+            },
+            "title": {
+                "type": "text",
+                "label": "Call to Action Title",
+                "help": "Call to action title",
+                "required": true
+            },
+            "apple_store_link": {
+                "type": "text",
+                "label": "Apple Store Link",
+                "help": "Apple store link"
+            },
+            "google_play_link": {
+                "type": "text",
+                "label": "Google Play Link",
+                "help": "Google play link"
+            }
+        }
+    }
+}
