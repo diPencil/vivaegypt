@@ -1,10 +1,10 @@
 @extends('layout_inner_page')
 
 @section('title')
-    <title>{{ $service?->translation?->seo_title ?? $service?->title }}</title>
-    <meta name="title" content="{{ $service?->translation?->seo_title ?? $service?->title }}">
-    <meta name="description" content="{!! $service?->translation?->seo_description ?? $service?->short_description !!}">
-    <meta name="keyword" content="{!! $service?->translation?->seo_keywords ?? $service?->title !!}">
+    <title>{{ $service?->translation?->seo_title ?? $service?->translation?->title ?? $service?->title }}</title>
+    <meta name="title" content="{{ $service?->translation?->seo_title ?? $service?->translation?->title ?? $service?->title }}">
+    <meta name="description" content="{!! $service?->translation?->seo_description ?? $service?->translation?->short_description ?? $service?->short_description !!}">
+    <meta name="keyword" content="{!! $service?->translation?->seo_keywords ?? $service?->translation?->title ?? $service?->title !!}">
 @endsection
 
 @section('front-content')
@@ -833,7 +833,7 @@
                             <form action="{{ route('front.tourbooking.book.checkout.view') }}">
                                 <h4 class="tg-tour-about-title title-2" style="margin-bottom: 6px;">{{ __('translate.Book Now') }}</h4>
                                 <p class="mb-15" style="font-size: 14px; line-height: 1.3; color: #6b7280; margin-top: 0;">
-                                    {{ $service->title }}
+                                    {{ $service->translation->title ?? $service->title }}
                                 </p>
 
                                 <input type="hidden" name="service_id" value="{{ $service->id }}">
