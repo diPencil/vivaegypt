@@ -3862,9 +3862,27 @@ body.td_theme_2 #header-sticky.header-sticky {
     border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 }
 
-/* Theme 1 — Why choose: star-2.png slightly further right (LTR؛ العربي في theme1-rtl.css بعد .ml-15) */
 @media (min-width: 992px) {
     body.td_theme_1 .tg-chose-area .tg-chose-thumb img.tg-chose-star-2 {
         margin-left: 28px !important;
+    }
+}
+
+/* Thin top bar styling to prevent wrapping at 100% desktop zoom */
+@media (min-width: 992px) {
+    .tg-topbar-address {
+        flex-shrink: 1 !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        max-width: 400px;
+    }
+    .tg-topbar-email, .tg-topbar-phone, .tg-topbar-login {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+    }
+    .tg-header-dvdr {
+        flex-shrink: 0 !important;
     }
 }

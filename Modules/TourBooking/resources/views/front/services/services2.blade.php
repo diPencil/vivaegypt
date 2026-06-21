@@ -1,4 +1,4 @@
-@extends('layout_inner_page')
+@extends('layout_inner_page2')
 
 @section('title')
     <title>Services</title>
@@ -8,27 +8,6 @@
 
 @section('front-content')
     <div x-data="data">
-    @php
-        $breadcrumb_title = __('translate.Explore Our Services');
-        $breadcrumb_parent = null;
-        $breadcrumb_parent_url = null;
-
-        if(request()->get('category') == 'domestic') {
-            $breadcrumb_title = __('translate.Explore Egypt Packages');
-        } elseif(request()->get('category') == 'outbound') {
-            $breadcrumb_title = __('translate.Explore International Packages');
-        } elseif(request()->get('destination')) {
-            $breadcrumb_title = __('translate.Tours & Services in') . ' ' . request()->get('destination');
-            $breadcrumb_parent = __('translate.Destinations');
-            $breadcrumb_parent_url = route('front.tourbooking.destinations');
-        } elseif(request()->get('type')) {
-            $type_name = \Modules\TourBooking\App\Models\ServiceType::where('slug', request()->get('type'))->first()?->localized_name ?? request()->get('type');
-            $breadcrumb_title = $type_name;
-            $breadcrumb_parent = __('translate.Services');
-            $breadcrumb_parent_url = route('front.tourbooking.services');
-        }
-    @endphp
-    @include('breadcrumb')
         <!-- tg-booking-form-area-start -->
         <div class="tg-booking-form-area tg-booking-form-grid-space pb-50">
             <div class="container">

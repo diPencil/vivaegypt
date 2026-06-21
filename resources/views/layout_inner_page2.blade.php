@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/rtl-utils.css') }}">
     @endif
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}">
+    @if(Session::get('lang_dir') == 'right_to_left')
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/theme1-rtl.css') }}">
+    @endif
 
     <link rel="stylesheet" href="{{ asset('global/toastr/toastr.min.css') }}">
 
