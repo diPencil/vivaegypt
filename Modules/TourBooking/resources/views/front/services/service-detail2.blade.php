@@ -1,4 +1,4 @@
-@extends('layout_inner_page')
+@extends('layout_inner_page2')
 
 
 @section('title')
@@ -35,12 +35,7 @@
                 $aboutTitle = __('translate.About This Flight');
                 $planTitle = __('translate.Flight Details');
             }
-
-            $breadcrumb_title = $service?->translation?->title ?? $service?->title;
-            $breadcrumb_parent = __('translate.Services');
-            $breadcrumb_parent_url = route('front.tourbooking.services');
         @endphp
-        @include('breadcrumb')
 
 
         <!-- tg-tour-details-area-start -->
