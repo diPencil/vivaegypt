@@ -3886,3 +3886,29 @@ body.td_theme_2 #header-sticky.header-sticky {
         flex-shrink: 0 !important;
     }
 }
+
+/* Inline breadcrumb for single service details page */
+.service-detail-inline-breadcrumb {
+    font-size: 13px;
+    font-weight: 500;
+    color: #777;
+}
+
+.service-detail-inline-breadcrumb a {
+    color: #777;
+    transition: color 0.3s ease;
+}
+
+.service-detail-inline-breadcrumb a:hover {
+    color: var(--tg-theme-primary);
+}
+
+.service-detail-inline-breadcrumb .separator {
+    margin: 0 6px;
+    color: #bbb;
+}
+
+.service-detail-inline-breadcrumb .current {
+    color: #333;
+    font-weight: 600;
+}

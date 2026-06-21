@@ -44,6 +44,13 @@
                 <div class="row align-items-end mb-25">
                     <div class="col-xl-9 col-lg-8">
                         <div class="tg-tour-details-video-title-wrap">
+                            <div class="service-detail-inline-breadcrumb mb-15">
+                                <a href="{{ route('home') }}">{{ __('translate.Home') }}</a>
+                                <span class="separator">&gt;</span>
+                                <a href="{{ route('front.tourbooking.services') }}">{{ __('translate.Services') }}</a>
+                                <span class="separator">&gt;</span>
+                                <span class="current">{{ $service?->translation?->title ?? $service?->title }}</span>
+                            </div>
                             <h2 class="tg-tour-details-video-title mb-15">{{ $service?->translation?->title }}</h2>
                             <div class="tg-tour-details-video-location d-flex flex-wrap">
 
