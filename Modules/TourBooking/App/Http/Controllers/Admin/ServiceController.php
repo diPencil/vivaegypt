@@ -179,7 +179,7 @@ final class ServiceController extends Controller
             // Check translation first, then service
             $value = $translation->$field ?? $service->$field ?? null;
 
-            if ($value) {
+            if ($value !== null) {
                 if (is_array($value)) {
                     // Already an array, convert to newline-separated string
                     if ($translation && isset($translation->$field)) {
